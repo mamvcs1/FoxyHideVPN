@@ -2177,15 +2177,15 @@ class _PowerOrb extends StatelessWidget {
                 child: InkWell(
                   autofocus: autofocus,
                   onTap: busy ? null : onPressed,
-                  // The spider emblem; dimmer while off.
+                  // Foxy Hide VPN emblem; dimmer while disconnected.
                   child: Center(
                     child: Opacity(
                       opacity: on ? 1 : 0.72,
                       child: Image.asset(
-                        p.dark
-                            ? 'assets/spider_emblem.png'
-                            : 'assets/spider_emblem_dark.png',
+                        'assets/logo.png',
                         height: 92 * scale,
+                        width: 92 * scale,
+                        fit: BoxFit.contain,
                         filterQuality: FilterQuality.medium,
                       ),
                     ),
