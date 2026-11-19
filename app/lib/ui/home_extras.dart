@@ -255,64 +255,6 @@ class RoundFlag extends StatelessWidget {
   );
 }
 
-/// The channel the Telegram button opens.
-const telegramUrl = 'https://t.me/SPiDER_VPN1';
-
-/// A round Telegram button, its paper plane in white on Telegram's blue; it
-/// opens [telegramUrl]. Put at the end of a row, it sits at the left of a
-/// right-to-left language (Persian) and at the right of the others.
-class TelegramButton extends StatelessWidget {
-  const TelegramButton({super.key, this.size = 40});
-
-  final double size;
-
-  @override
-  Widget build(BuildContext context) => Tooltip(
-    message: 'Telegram',
-    child: Material(
-      color: const Color(0xFF27A7E7),
-      shape: const CircleBorder(),
-      clipBehavior: Clip.antiAlias,
-      child: InkWell(
-        onTap: () => openLink(context, telegramUrl),
-        child: SizedBox(
-          width: size,
-          height: size,
-          child: CustomPaint(painter: _PlanePainter()),
-        ),
-      ),
-    ),
-  );
-}
-
-class _PlanePainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Offset at(double x, double y) => Offset(x * size.width, y * size.height);
-    final plane = Path()
-      ..moveTo(at(0.20, 0.50).dx, at(0.20, 0.50).dy)
-      ..lineTo(at(0.78, 0.27).dx, at(0.78, 0.27).dy)
-      ..lineTo(at(0.66, 0.75).dx, at(0.66, 0.75).dy)
-      ..lineTo(at(0.50, 0.62).dx, at(0.50, 0.62).dy)
-      ..lineTo(at(0.41, 0.72).dx, at(0.41, 0.72).dy)
-      ..lineTo(at(0.40, 0.58).dx, at(0.40, 0.58).dy)
-      ..close();
-    canvas.drawPath(plane, Paint()..color = Colors.white);
-    // The fold of the plane, a thin line in the button's blue.
-    canvas.drawLine(
-      at(0.40, 0.58),
-      at(0.70, 0.38),
-      Paint()
-        ..color = const Color(0xFF27A7E7)
-        ..strokeWidth = size.width * 0.035
-        ..strokeCap = StrokeCap.round,
-    );
-  }
-
-  @override
-  bool shouldRepaint(_PlanePainter old) => false;
-}
-
 /// The location as a row of flags: the chosen one large in the middle, in a
 /// ring, with its name below, and the fastest other countries small on both
 /// sides. A tap on a small flag chooses that country and connects to it;
