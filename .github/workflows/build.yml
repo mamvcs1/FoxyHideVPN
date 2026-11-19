@@ -1,4 +1,4 @@
-# Builds spider firefox vpn for Windows, macOS, Android (one universal APK
+# Builds Foxy Hide VPN for Windows, Android (one universal APK
 # plus one per architecture) and Linux, and publishes them as a GitHub
 # release (Releases, on the repository's page) by itself:
 #
@@ -98,9 +98,9 @@ jobs:
       - name: Update notice
         run: |
           jq -e 'type == "object"
-            and all(keys[]; IN("android", "linux", "macos", "windows"))
+            and all(keys[]; IN("android", "linux", "windows"))
             and all(.[]; type == "string" and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))' .github/updates.json >/dev/null || {
-            echo "::error::updates.json must be an object whose keys are android, linux, macos, or windows, each with a \"major.minor.patch\" version"
+            echo "::error::updates.json must be an object whose keys are android, linux, or windows, each with a \"major.minor.patch\" version"
             exit 1
           }
           # A version that is never released would stop that system's
@@ -360,104 +360,12 @@ jobs:
           path: out/*
           if-no-files-found: error
 
-  macos:
-    needs: test
-    # !cancelled(): a failed test job does not skip the builds.
-    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'macos')) }}
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v7
-      - uses: actions/setup-go@v7
-        with:
-          go-version-file: core/go.mod
-          cache-dependency-path: core/go.sum
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: ${{ env.FLUTTER_VERSION }}
-          channel: stable
-          cache: true
-      # What runs only on macOS: the system proxy, the TUN service and its
-      # socket, DNS settings, the core's binding outside the TUN, and the
-      # app's update.
-      - name: Core tests on macOS
-        continue-on-error: true
-        working-directory: core
-        run: |
-          go vet ./...
-          go test -skip "$MAC_UPDATE_TESTS" ./internal/desktop ./internal/config ./internal/egress ./internal/netstate ./internal/tunapi ./internal/tunservice ./internal/update
-          go test -tags with_gvisor ./internal/tunstack/
-        env:
-          MAC_UPDATE_TESTS: TestTheAppOpensWithItsArguments|TestTheBundleLosesTheQuarantineMark
-      # The update's Launch Services and quarantine tests. Not yet run on a
-      # Mac but here, so a failure shows without holding the release back.
-      - name: Update tests that need a Mac
-        continue-on-error: true
-        working-directory: core
-        run: go test -v -run 'TestTheAppOpensWithItsArguments|TestTheBundleLosesTheQuarantineMark' ./internal/update
-      # A real TUN, as root, for a minute (internal/tunservice/e2e_test.go):
-      # this computer is CI's. Not yet run on a Mac but here, so a failure
-      # shows without holding the release back.
-      - name: TUN end to end
-        continue-on-error: true
-        working-directory: core
-        run: |
-          go test -c -tags 'e2e with_gvisor' -o "$RUNNER_TEMP/e2e.test" ./internal/tunservice
-          sudo "$RUNNER_TEMP/e2e.test" -test.run TestEndToEnd -test.v
-      # The service installed with launchd for this user, who then removes
-      # it through the service, without a prompt.
-      - name: TUN service with launchd
-        continue-on-error: true
-        working-directory: core
-        run: |
-          go build -tags with_gvisor -o "$RUNNER_TEMP/arman-vpn-tun" ./cmd/arman-vpn-tun
-          sudo "$RUNNER_TEMP/arman-vpn-tun" install
-          sudo launchctl print system/com.arman.firefoxvpn.tun | head -20
-          "$RUNNER_TEMP/arman-vpn-tun" uninstall
-          for i in $(seq 20); do sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1 || break; sleep 0.5; done
-          if sudo launchctl print system/com.arman.firefoxvpn.tun >/dev/null 2>&1; then echo "the job is still loaded"; exit 1; fi
-          test ! -e /Library/LaunchDaemons/com.arman.firefoxvpn.tun.plist
-          test ! -e "/Library/Application Support/Arman VPN TUN"
-      - name: Build
-        env:
-          # The key updates are signed with: the core and the TUN service
-          # take only updates it signed; without it they take none.
-          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
-        run: bash scripts/build-macos.sh
-      # The app's own update, end to end: the app just built, in
-      # /Applications, updates itself to a test release on loopback
-      # (scripts/test-update-macos.sh). Not yet run on a Mac but here, so a
-      # failure shows without holding the release back.
-      - name: App update end to end
-        continue-on-error: true
-        # Its own waits end within about 10 minutes; a dialog nobody answers
-        # must not hold the release for the job's 6 hours.
-        timeout-minutes: 20
-        run: bash scripts/test-update-macos.sh "$RUNNER_TEMP/update-test"
-      # Its screenshots and logs; not on a release, which takes every
-      # artifact of the run.
-      - uses: actions/upload-artifact@v7
-        if: always() && !startsWith(github.ref, 'refs/tags/v')
-        with:
-          name: macos-update-test
-          path: ${{ runner.temp }}/update-test
-          if-no-files-found: ignore
-      - name: Release name
-        run: |
-          mkdir out
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-macOS.dmg" out/Arman-VPN-macOS.dmg
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-macOS.tar.gz" out/Arman-VPN-macOS.tar.gz
-      - uses: actions/upload-artifact@v7
-        with:
-          name: macos
-          path: out/*
-          if-no-files-found: error
-
   release:
-    needs: [test, windows, android, linux, linux-desktop, macos]
+    needs: [test, windows, android, linux, linux-desktop]
     # A platform left out by PLATFORMS is skipped, not failed: the release
     # goes on with the rest.
     # Only a failed build holds the release back, not a failed test.
-    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' && needs.macos.result != 'failure' }}
+    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -467,13 +375,11 @@ jobs:
         with:
           go-version-file: core/go.mod
           cache-dependency-path: core/go.sum
-      # Only the platforms' files: not the macOS update test's logs and
-      # screenshots, which are artifacts too (an empty log is refused by
-      # the release).
+      # Download only the artifacts produced by the supported platform jobs.
       - uses: actions/download-artifact@v8
         with:
           path: release
-          pattern: '{windows,android,linux,linux-desktop-*,macos}'
+          pattern: '{windows,android,linux,linux-desktop-*}'
           merge-multiple: true
       - name: No empty files
         run: find release -type f -empty -print -delete
@@ -528,7 +434,6 @@ jobs:
             echo "| Android, older phones (32-bit) | [armeabi-v7a.apk]($base/Spider-Firefox-VPN-$v-Android-armeabi-v7a.apk) |"
             echo "| Android, any phone (largest) | [universal.apk]($base/Spider-Firefox-VPN-$v-Android-universal.apk) |"
             echo "| Windows | [Setup]($base/Spider-Firefox-VPN-$v-Windows-Setup-x64.exe) · [portable zip]($base/Spider-Firefox-VPN-$v-Windows-x64.zip) |"
-            echo "| macOS | [dmg]($base/Spider-Firefox-VPN-$v-macOS.dmg) |"
             echo "| Linux | [x64]($base/Spider-Firefox-VPN-$v-Linux-amd64.tar.gz) · [arm64]($base/Spider-Firefox-VPN-$v-Linux-arm64.tar.gz) |"
             echo
             echo "All files and their SHA-256 sums are in the list below."
