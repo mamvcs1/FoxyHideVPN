@@ -39,16 +39,16 @@
 
 ## ⬇️ دانلود
 
-آخرین نسخه از بخش **[Releases](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest)**:
+آخرین نسخه از بخش **Releases**:
 
 | سیستم | فایل | توضیح |
 |---|---|---|
-| 🤖 اندروید | [**arm64-v8a**](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-arm64-v8a.apk) | اکثر گوشی‌های امروزی (۶۴ بیتی). حدود ۴۰ مگ |
-| 🤖 اندروید | [armeabi-v7a](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-armeabi-v7a.apk) | گوشی‌های قدیمی (۳۲ بیتی) |
-| 🤖 اندروید / TV | [universal](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-universal.apk) | هر دستگاهی، حجم بیشتر |
-| 🪟 ویندوز (۶۴ بیتی) | [نصب‌کننده](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Windows-Setup-x64.exe) · [نسخهٔ قابل‌حمل](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Windows-x64.zip) | |
-| 🍎 مک | [dmg](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-macOS.dmg) | |
-| 🐧 لینوکس | [x64](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Linux-amd64.tar.gz) · [arm64](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Linux-arm64.tar.gz) | |
+| 🤖 اندروید | **arm64-v8a** | اکثر گوشی‌های امروزی (۶۴ بیتی). حدود ۴۰ مگ |
+| 🤖 اندروید | armeabi-v7a | گوشی‌های قدیمی (۳۲ بیتی) |
+| 🤖 اندروید / TV | universal | هر دستگاهی، حجم بیشتر |
+| 🪟 ویندوز (۶۴ بیتی) | نصب‌کننده · نسخهٔ قابل‌حمل | |
+| 🍎 مک | dmg | |
+| 🐧 لینوکس | x64 · arm64 | |
 
 ---
 
@@ -139,16 +139,16 @@ A **free VPN** for **Android, Windows, macOS and Linux**. Sign in with your own 
 
 ## ⬇️ Download
 
-Get the latest build from **[Releases](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest)**:
+Get the latest build from **Releases**:
 
 | System | File | Note |
 |---|---|---|
-| 🤖 Android | [**arm64-v8a**](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-arm64-v8a.apk) | Most phones today (64-bit), ~40 MB |
-| 🤖 Android | [armeabi-v7a](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-armeabi-v7a.apk) | Older phones (32-bit) |
-| 🤖 Android / TV | [universal](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Android-universal.apk) | Any device, larger file |
-| 🪟 Windows (64-bit) | [Setup](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Windows-Setup-x64.exe) · [portable zip](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Windows-x64.zip) | |
-| 🍎 macOS | [dmg](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-macOS.dmg) | |
-| 🐧 Linux | [x64](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Linux-amd64.tar.gz) · [arm64](https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest/download/Spider-Firefox-VPN-Linux-arm64.tar.gz) | |
+| 🤖 Android | **arm64-v8a** | Most phones today (64-bit), ~40 MB |
+| 🤖 Android | armeabi-v7a | Older phones (32-bit) |
+| 🤖 Android / TV | universal | Any device, larger file |
+| 🪟 Windows (64-bit) | Setup · portable zip | |
+| 🍎 macOS | dmg | |
+| 🐧 Linux | x64 · arm64 | |
 
 ## 🚀 Install and use
 
