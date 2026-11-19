@@ -45,6 +45,10 @@ try {
     foreach ($stale in "build\flutter_assets", "build\windows\x64\runner\Release\data\flutter_assets") {
         if (Test-Path $stale) { Remove-Item -LiteralPath $stale -Recurse -Force }
     }
+    # Regenerate every platform icon and the in-app emblem from the Foxy
+    # shield before Flutter bundles its assets. Requires Python + Pillow.
+    python tool/app_icons.py
+    if ($LASTEXITCODE -ne 0) { throw 'Foxy icon generation failed (install Pillow for Python)' }
     # The packages from the local cache when it has them; from pub.dev
     # otherwise (a new machine). pub.dev refuses some requests from some
     # countries (its security advisories), which an offline get avoids.
