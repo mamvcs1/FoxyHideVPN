@@ -14,7 +14,7 @@
 #
 # Each file is published twice: under a fixed name (which the README's
 # releases/latest/download links fetch) and with the version in its name
-# (Spider-Firefox-VPN-1.2.3-Android-universal.apk).
+# (Foxy-Hide-VPN-1.2.3-Android-universal.apk).
 #
 # Secrets (Settings, Secrets and variables, Actions), all optional:
 #   ANDROID_KEYSTORE_BASE64    the Android key (.jks), base64-encoded
@@ -399,17 +399,17 @@ jobs:
           merge-multiple: true
       - name: No empty files
         run: find release -type f -empty -print -delete
-      # The programs' names, spider's: Spider-Firefox-VPN-Windows-x64.zip,
+      # The programs' names, Foxy Hide VPN's: Foxy-Hide-VPN-Windows-x64.zip,
       # and a copy of each file with the version after it.
       - name: Names
         working-directory: release
         run: |
           v="${{ needs.test.outputs.version }}"
           for f in Arman-VPN-*; do
-            [ -e "$f" ] && mv "$f" "Spider-Firefox-VPN-${f#Arman-VPN-}"
+            [ -e "$f" ] && mv "$f" "Foxy-Hide-VPN-${f#Arman-VPN-}"
           done
-          for f in Spider-Firefox-VPN-*; do
-            cp "$f" "Spider-Firefox-VPN-$v-${f#Spider-Firefox-VPN-}"
+          for f in Foxy-Hide-VPN-*; do
+            cp "$f" "Foxy-Hide-VPN-$v-${f#Foxy-Hide-VPN-}"
           done
           for f in arman-vpn-core-*; do
             [ -e "$f" ] && cp "$f" "arman-vpn-core-$v-${f#arman-vpn-core-}"
@@ -442,15 +442,15 @@ jobs:
           v="${{ needs.test.outputs.version }}"
           base="https://github.com/$GITHUB_REPOSITORY/releases/download/$tag"
           {
-            echo "## spider firefox vpn $v"
+            echo "## foxy hide vpn $v"
             echo
             echo "| System | File |"
             echo "|---|---|"
-            echo "| Android, most phones (64-bit) | [arm64-v8a.apk]($base/Spider-Firefox-VPN-$v-Android-arm64-v8a.apk) |"
-            echo "| Android, older phones (32-bit) | [armeabi-v7a.apk]($base/Spider-Firefox-VPN-$v-Android-armeabi-v7a.apk) |"
-            echo "| Android, any phone (largest) | [universal.apk]($base/Spider-Firefox-VPN-$v-Android-universal.apk) |"
-            echo "| Windows | [Setup]($base/Spider-Firefox-VPN-$v-Windows-Setup-x64.exe) · [portable zip]($base/Spider-Firefox-VPN-$v-Windows-x64.zip) |"
-            echo "| Linux | [x64]($base/Spider-Firefox-VPN-$v-Linux-amd64.tar.gz) · [arm64]($base/Spider-Firefox-VPN-$v-Linux-arm64.tar.gz) |"
+            echo "| Android, most phones (64-bit) | [arm64-v8a.apk]($base/Foxy-Hide-VPN-$v-Android-arm64-v8a.apk) |"
+            echo "| Android, older phones (32-bit) | [armeabi-v7a.apk]($base/Foxy-Hide-VPN-$v-Android-armeabi-v7a.apk) |"
+            echo "| Android, any phone (largest) | [universal.apk]($base/Foxy-Hide-VPN-$v-Android-universal.apk) |"
+            echo "| Windows | [Setup]($base/Foxy-Hide-VPN-$v-Windows-Setup-x64.exe) · [portable zip]($base/Foxy-Hide-VPN-$v-Windows-x64.zip) |"
+            echo "| Linux | [x64]($base/Foxy-Hide-VPN-$v-Linux-amd64.tar.gz) · [arm64]($base/Foxy-Hide-VPN-$v-Linux-arm64.tar.gz) |"
             echo
             echo "All files and their SHA-256 sums are in the list below."
           } > notes.md
@@ -460,6 +460,6 @@ jobs:
             gh release create "$tag" release/* \
               --repo "$GITHUB_REPOSITORY" \
               --target "$GITHUB_SHA" \
-              --title "spider firefox vpn $v" \
+              --title "foxy hide vpn $v" \
               --notes-file notes.md
           fi
