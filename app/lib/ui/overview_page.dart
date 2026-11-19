@@ -801,8 +801,6 @@ class _DesktopHeader extends StatelessWidget {
             icon: const Icon(Icons.info_outline_rounded),
           ),
         const SizedBox(width: 8),
-        // At the left in Persian, at the right in the others.
-        const TelegramButton(size: 40),
       ],
     );
   }
@@ -1618,8 +1616,6 @@ class _PhoneHome extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // At the left in Persian, at the right in the others.
-                  const TelegramButton(size: 36),
                 ],
               ),
               const Spacer(),
