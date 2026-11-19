@@ -3,9 +3,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/ppj30088-hash/firefox-spider-vpn/releases/latest"><img alt="Version" src="https://img.shields.io/github/v/release/ppj30088-hash/firefox-spider-vpn?style=for-the-badge&label=version&color=1fbf84"></a>
-  <a href="https://github.com/ppj30088-hash/firefox-spider-vpn/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/ppj30088-hash/firefox-spider-vpn/total?style=for-the-badge&label=downloads&color=4c8dff"></a>
-  <a href="https://github.com/ppj30088-hash/firefox-spider-vpn/actions/workflows/build.yml"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/ppj30088-hash/firefox-spider-vpn/build.yml?style=for-the-badge&label=build"></a>
+  <a href="https://github.com/mamvcs1/FoxyHideVPN/releases/latest"><img alt="Version" src="https://img.shields.io/github/v/release/mamvcs1/FoxyHideVPN?style=for-the-badge&label=version&color=1fbf84"></a>
+  <a href="https://github.com/mamvcs1/FoxyHideVPN/releases"><img alt="Downloads" src="https://img.shields.io/github/downloads/mamvcs1/FoxyHideVPN/total?style=for-the-badge&label=downloads&color=4c8dff"></a>
+  <a href="https://github.com/mamvcs1/FoxyHideVPN/actions/workflows/build.yml"><img alt="Build" src="https://img.shields.io/github/actions/workflow/status/mamvcs1/FoxyHideVPN/build.yml?style=for-the-badge&label=build"></a>
 </p>
 
 <p align="center">
