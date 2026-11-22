@@ -487,7 +487,7 @@ class _PillNav extends StatelessWidget {
   final bool accountsSelected;
   final VoidCallback onAccounts;
 
-  static const _green = Color(0xFF1FBF84);
+  static const _accent = Color(0xFFE50924);
   static const _idle = Color(0xFF9AA0AE);
 
   @override
@@ -543,7 +543,7 @@ class _PillNav extends StatelessWidget {
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: accountsSelected
-                                  ? _green
+                                  ? _accent
                                   : const Color(0x33FFFFFF),
                               width: 2,
                             ),
@@ -557,7 +557,7 @@ class _PillNav extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 10,
-                            color: accountsSelected ? _green : _idle,
+                            color: accountsSelected ? _accent : _idle,
                           ),
                         ),
                       ],
