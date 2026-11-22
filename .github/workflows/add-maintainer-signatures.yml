@@ -1,8 +1,6 @@
 name: Apply maintainer signatures
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -62,11 +60,6 @@ jobs:
                   comment = "// " + marker
 
               if marker in source:
-                  corrected = source.replace("// " + marker, comment).replace("# " + marker, comment).replace("-- " + marker, comment).replace("/* " + marker + " */", comment).replace("<!-- " + marker + " -->", comment)
-                  if corrected == source:
-                      continue
-                  path.write_text(corrected, encoding="utf-8", newline="")
-                  changed.append(path.as_posix())
                   continue
               lines = source.splitlines(keepends=True)
               insert_at = 0
