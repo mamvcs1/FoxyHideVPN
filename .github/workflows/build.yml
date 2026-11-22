@@ -324,7 +324,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: linux
-          path: dist/foxy-hide-vpn-core-linux-*.tar.gz
+          path: dist/arman-vpn-core-linux-*.tar.gz
           if-no-files-found: error
 
   linux-desktop:
@@ -332,6 +332,7 @@ jobs:
     # !cancelled(): a failed test job does not skip the builds.
     if: ${{ needs.test.result == 'success' && needs.test.outputs.release == 'true' && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'linux')) }}
     strategy:
+      fail-fast: false
       matrix:
         include:
           - arch: amd64
@@ -399,7 +400,7 @@ jobs:
       - name: Release name
         run: |
           mkdir out
-          mv "dist/Foxy-Hide-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Foxy-Hide-VPN-Linux-${{ matrix.arch }}.tar.gz"
+          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Foxy-Hide-VPN-Linux-${{ matrix.arch }}.tar.gz"
       - uses: actions/upload-artifact@v7
         with:
           name: linux-desktop-${{ matrix.arch }}
