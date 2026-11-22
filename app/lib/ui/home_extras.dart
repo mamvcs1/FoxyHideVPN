@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../core/core_controller.dart';
-import '../core/models.dart';
 import 'widgets.dart';
 
 /// A small line chart of the last values, smooth, with a soft fill under
