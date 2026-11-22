@@ -235,7 +235,7 @@ func TestResetLoginScreen(t *testing.T) {
 	}
 	ui.handleKey('\r')
 	text = waitLogin(t, ui)
-	if len(backend.sets) != 2 || backend.sets[1] != "me secret" || !strings.Contains(text, "me") || strings.Contains(text, "secret") {
+	if len(backend.sets) != 2 || backend.sets[1] != "me secret123456" || !strings.Contains(text, "me") || strings.Contains(text, "secret") {
 		t.Fatalf("own (sets %q):\n%s", backend.sets, text)
 	}
 	ui.submit("0")
@@ -243,7 +243,7 @@ func TestResetLoginScreen(t *testing.T) {
 	ui.submit("2")
 	typeLine("you")
 	typeLine("short")
-	if len(backend.sets) != 2 || !strings.Contains(ui.message, "at least 6") {
+	if len(backend.sets) != 2 || !strings.Contains(ui.message, "at least 12") {
 		t.Fatalf("a short password: sets %q, message %q", backend.sets, ui.message)
 	}
 }
