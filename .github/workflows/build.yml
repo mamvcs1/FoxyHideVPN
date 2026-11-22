@@ -49,9 +49,7 @@ env:
 jobs:
   test:
     runs-on: ubuntu-24.04
-    # A failing test shows red here and does not stop the builds or the
-    # release.
-    continue-on-error: true
+    # Releases are blocked unless every required test passes.
     outputs:
       version: ${{ steps.version.outputs.version }}
       release: ${{ steps.release.outputs.release }}
@@ -165,7 +163,7 @@ jobs:
     # Built unless the repository variable PLATFORMS (Settings, Secrets and
     # variables, Actions, Variables) is set and leaves it out, e.g. "linux".
     # !cancelled(): a failed test job does not skip the builds.
-    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'windows')) }}
+    if: ${{ needs.test.result == 'success' && needs.test.outputs.release == 'true' && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'windows')) }}
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v7
@@ -252,9 +250,9 @@ jobs:
           KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
           PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         run: |
-          if [ -z "$KEYSTORE" ]; then
-            echo "::warning::no release key: the APKs are signed with a debug key"
-            exit 0
+          if [ -z "$KEYSTORE" ] || [ -z "$PASSWORD" ]; then
+            echo "::error::Android release signing secrets are required; refusing to publish a debug-signed APK"
+            exit 1
           fi
           printf '%s' "$KEYSTORE" | tr -d ' \r\n' | base64 -d > app/android/release.jks
           # Checked here, so a bad copy of the key is a warning (and debug
@@ -263,9 +261,10 @@ jobs:
             printf 'storeFile=../release.jks\nstorePassword=%s\nkeyAlias=release\nkeyPassword=%s\n' "$PASSWORD" "$PASSWORD" > app/android/key.properties
             echo "release key OK"
           else
-            echo "::warning::the release key could not be read, so the APKs are signed with a debug key. keytool said:"
+            echo "::error::the Android release keystore is invalid; refusing to build a debug-signed APK"
             sed 's/^/    /' /tmp/keytool.txt
             rm -f app/android/release.jks
+            exit 1
           fi
       - name: Build
         run: |
@@ -447,8 +446,8 @@ jobs:
     needs: [test, windows, android, linux, linux-desktop, macos]
     # A platform left out by PLATFORMS is skipped, not failed: the release
     # goes on with the rest.
-    # Only a failed build holds the release back, not a failed test.
-    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' && needs.macos.result != 'failure' }}
+    # Tests and every selected platform build must succeed before publishing.
+    if: ${{ needs.test.result == 'success' && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' && needs.macos.result != 'failure' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: write
