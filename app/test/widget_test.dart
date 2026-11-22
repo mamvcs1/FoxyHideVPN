@@ -13,7 +13,6 @@ import 'package:arman_vpn/core/relay_test.dart';
 import 'package:arman_vpn/core/tun_service.dart';
 import 'package:arman_vpn/core/updates.dart';
 import 'package:arman_vpn/core/announcements.dart';
-import 'package:arman_vpn/core/android_core.dart';
 import 'package:arman_vpn/desktop/close_dialog.dart';
 import 'package:arman_vpn/l10n/app_localizations.dart';
 import 'package:arman_vpn/ui/app.dart';
