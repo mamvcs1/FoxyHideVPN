@@ -720,7 +720,7 @@ func (ui *consoleUI) submitLoginText(text string) {
 		ui.mu.Unlock()
 	default:
 		if _, _, err := service.PanelLogin(username, text); err != nil || text == "" {
-			ui.setMessage("The password needs at least 6 characters", ansiYellow)
+			ui.setMessage("The password needs at least 12 characters", ansiYellow)
 			return
 		}
 		ui.mu.Lock()
