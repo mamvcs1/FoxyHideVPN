@@ -710,7 +710,7 @@ func (ui *consoleUI) submitLoginText(text string) {
 		ui.loginStep = loginChoose
 		ui.mu.Unlock()
 	case step == loginUsername:
-		if _, _, err := service.PanelLogin(text, "placeholder"); err != nil {
+		if _, _, err := service.PanelLogin(text, "placeholder123"); err != nil {
 			ui.setMessage("A username has at most 64 characters, without spaces or ':'", ansiYellow)
 			return
 		}
