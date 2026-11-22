@@ -376,12 +376,51 @@ jobs:
           path: out/*
           if-no-files-found: error
 
+
+  macos:
+    needs: test
+    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && (vars.PLATFORMS == '' || contains(vars.PLATFORMS, 'macos')) }}
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: core/go.mod
+          cache-dependency-path: core/go.sum
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - name: Artwork dependencies
+        run: |
+          brew install cairo
+          python -m pip install Pillow CairoSVG
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: stable
+          cache: true
+      - name: Build
+        env:
+          ARMAN_VPN_SIGNING_KEY: ${{ secrets.FIREFOX_VPN_SIGNING_KEY }}
+        run: bash scripts/build-macos.sh
+      - name: Release names
+        run: |
+          v=' ${{ needs.test.outputs.version }}'
+          mkdir -p out
+          mv "dist/Arman-VPN-$v-macOS.dmg" out/Foxy-Hide-VPN-macOS.dmg
+          mv "dist/Arman-VPN-$v-macOS.tar.gz" out/Foxy-Hide-VPN-macOS.tar.gz
+      - uses: actions/upload-artifact@v7
+        with:
+          name: macos
+          path: out/*
+          if-no-files-found: error
+
   release:
-    needs: [test, windows, android, linux, linux-desktop]
+    needs: [test, windows, android, linux, linux-desktop, macos]
     # A platform left out by PLATFORMS is skipped, not failed: the release
     # goes on with the rest.
     # Only a failed build holds the release back, not a failed test.
-    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' }}
+    if: ${{ !cancelled() && needs.test.outputs.release == 'true' && needs.windows.result != 'failure' && needs.android.result != 'failure' && needs.linux.result != 'failure' && needs.linux-desktop.result != 'failure' && needs.macos.result != 'failure' }}
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -395,7 +434,7 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           path: release
-          pattern: '{windows,android,linux,linux-desktop-*}'
+          pattern: '{windows,android,linux,linux-desktop-*,macos}'
           merge-multiple: true
       - name: No empty files
         run: find release -type f -empty -print -delete
@@ -451,6 +490,7 @@ jobs:
             echo "| Android, any phone (largest) | [universal.apk]($base/Foxy-Hide-VPN-$v-Android-universal.apk) |"
             echo "| Windows | [Setup]($base/Foxy-Hide-VPN-$v-Windows-Setup-x64.exe) · [portable zip]($base/Foxy-Hide-VPN-$v-Windows-x64.zip) |"
             echo "| Linux | [x64]($base/Foxy-Hide-VPN-$v-Linux-amd64.tar.gz) · [arm64]($base/Foxy-Hide-VPN-$v-Linux-arm64.tar.gz) |"
+            echo "| macOS | [DMG]($base/Foxy-Hide-VPN-macOS.dmg) · [app archive]($base/Foxy-Hide-VPN-macOS.tar.gz) |"
             echo
             echo "All files and their SHA-256 sums are in the list below."
           } > notes.md
