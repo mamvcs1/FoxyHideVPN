@@ -33,7 +33,7 @@
   --radius-sm: 9px;
   --sans: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
   --mono: "JetBrains Mono", "Cascadia Mono", ui-monospace, Consolas, Menlo, monospace;
-  --gradient: linear-gradient(135deg, #ff9a3c 0%, #ff3d77 52%, #e11d48 100%);
+  --gradient: linear-gradient(135deg, #881337 0%, #e11d48 52%, #f43f5e 100%);
   color-scheme: dark;
 }
 :root[data-theme="light"] {
