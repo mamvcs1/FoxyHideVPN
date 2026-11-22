@@ -144,7 +144,7 @@ jobs:
           python-version: '3.x'
       - name: Foxy artwork
         run: |
-          python -m pip install Pillow
+          python -m pip install Pillow CairoSVG
           python app/tool/app_icons.py
       - uses: subosito/flutter-action@v2
         with:
@@ -176,7 +176,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
-      - run: python -m pip install Pillow
+      - run: python -m pip install Pillow CairoSVG
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
@@ -223,7 +223,7 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.x'
-      - run: python -m pip install Pillow
+      - run: python -m pip install Pillow CairoSVG
       - uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
