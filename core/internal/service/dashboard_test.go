@@ -589,8 +589,8 @@ func TestDashboardSessionsLastAndEnd(t *testing.T) {
 				c.cookie = cookie
 			}
 		}
-		if c.cookie == nil || c.cookie.MaxAge < 399*24*3600 {
-			t.Fatalf("expected a 400-day session cookie, got %+v", c.cookie)
+		if c.cookie == nil || c.cookie.MaxAge != int(sessionLifetime/time.Second) {
+			t.Fatalf("expected a %s session cookie, got %+v", sessionLifetime, c.cookie)
 		}
 	}
 	status := func(c *dashboardClient) int { return c.do(http.MethodGet, "/api/status", nil).Code }
