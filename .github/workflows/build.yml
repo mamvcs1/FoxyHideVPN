@@ -182,6 +182,16 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: stable
           cache: true
+      - name: Cairo runtime
+        shell: pwsh
+        run: |
+          choco install gtk-runtime -y --no-progress
+          $gtkBin = "$env:ProgramFiles\GTK3-Runtime Win64\bin"
+          if (-not (Test-Path "$gtkBin\libcairo-2.dll")) {
+            throw "GTK runtime installed without libcairo-2.dll at $gtkBin"
+          }
+          "$gtkBin" >> $env:GITHUB_PATH
+          $env:PATH = "$gtkBin;$env:PATH"
       - name: Inno Setup
         run: choco upgrade innosetup -y --no-progress
       - name: Build
