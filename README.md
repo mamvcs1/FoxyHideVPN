@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/logo.png" alt="Foxy Hide VPN" width="100%">
+  <img src="docs/images/foxy-hide-banner.png" alt="Foxy Hide VPN" width="100%">
 </p>
 
 <p align="center">
