@@ -734,3 +734,13 @@ func TestSignInProxyOnlyForTheApp(t *testing.T) {
 		t.Fatalf("close: %d %s", rec.Code, rec.Body)
 	}
 }
+
+
+func TestPanelLoginRequiresTwelveCharacterPassword(t *testing.T) {
+	if _, _, err := PanelLogin("operator", "shortpass"); !errors.Is(err, errBadPanelLogin) {
+		t.Fatalf("short password should be rejected, got %v", err)
+	}
+	if _, _, err := PanelLogin("operator", "long-enough-password"); err != nil {
+		t.Fatalf("12+ character password should be accepted, got %v", err)
+	}
+}
