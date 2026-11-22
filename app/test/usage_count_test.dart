@@ -1,4 +1,4 @@
-import 'package:firefox_vpn/app_settings.dart';
+import 'package:arman_vpn/app_settings.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
