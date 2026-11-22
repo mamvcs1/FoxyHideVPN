@@ -1,4 +1,4 @@
-name: Add maintainer signatures
+name: Apply maintainer signatures
 
 on:
   push:
