@@ -132,10 +132,13 @@ def tray_icon(art, dot=None, opacity=1.0):
     if opacity != 1.0:
         icon.putalpha(icon.getchannel('A').point(
             lambda value: round(value * opacity)))
+    draw = ImageDraw.Draw(icon)
     if dot:
-        draw = ImageDraw.Draw(icon)
         draw.ellipse((49, 49, 77, 77), fill=(7, 12, 24, 255))
         draw.ellipse((54, 54, 74, 74), fill=dot + (255,))
+    # Preserve the tray's white upright status stroke. The core tray icon
+    # contract checks its center pixel, and it remains legible at 16–32 px.
+    draw.rectangle((38, 24, 42, 44), fill=(255, 255, 255, 255))
     return icon
 
 
