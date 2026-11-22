@@ -6,13 +6,16 @@ Requires Pillow. The script updates Android, Windows, Linux/core, tray,
 dashboard and Flutter app assets so every release carries the same Foxy mark.
 """
 import os
+from io import BytesIO
+
+import cairosvg
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.abspath(os.path.join(HERE, '..'))
 ROOT = os.path.abspath(os.path.join(APP, '..'))
 CORE = os.path.join(ROOT, 'core')
-SOURCE = os.path.join(ROOT, 'docs', 'images', 'logo.png')
+SOURCE = os.path.join(ROOT, 'docs', 'images', 'foxy-hide-mark.svg')
 RES = os.path.join(APP, 'android', 'app', 'src', 'main', 'res')
 DENSITY = {'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
 WINDOWS_SIZES = [16, 20, 24, 32, 40, 48, 64, 128, 256]
@@ -173,10 +176,28 @@ def tray(art):
                   art, core_states, 32)
 
 
+
+def macos_icons(art):
+    """Generate every macOS AppIcon.appiconset image from the same Foxy mark."""
+    folder = os.path.join(APP, 'macos', 'Runner', 'Assets.xcassets',
+                          'AppIcon.appiconset')
+    os.makedirs(folder, exist_ok=True)
+    sizes = {
+        'app_icon_16.png': 16, 'app_icon_32.png': 32,
+        'app_icon_64.png': 64, 'app_icon_128.png': 128,
+        'app_icon_256.png': 256, 'app_icon_512.png': 512,
+        'app_icon_1024.png': 1024,
+    }
+    for name, size in sizes.items():
+        canvas = Image.new('RGBA', (size, size), (7, 12, 24, 255))
+        canvas.alpha_composite(fit_art(art, size, 0.88))
+        canvas.save(os.path.join(folder, name), optimize=True)
+
 def main():
     if not os.path.isfile(SOURCE):
         raise SystemExit('Foxy source logo not found: ' + SOURCE)
-    art = Image.open(SOURCE).convert('RGBA')
+    png = cairosvg.svg2png(url=SOURCE, output_width=1024, output_height=1024)
+    art = Image.open(BytesIO(png)).convert('RGBA')
     if art.getchannel('A').getbbox() is None:
         raise SystemExit('Foxy source logo is fully transparent')
     android(art)
@@ -184,6 +205,7 @@ def main():
     write_ico(os.path.join(APP, 'windows', 'runner', 'resources',
                            'app_icon.ico'), art)
     desktop_and_web(art)
+    macos_icons(art)
     tray(art)
     print('Generated Foxy Hide VPN icons for Android, Windows, Linux and web.')
 
