@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Builds the Linux core into dist/: arman-vpn-core-linux-amd64.tar.gz,
 # arman-vpn-core-linux-arm64.tar.gz, and arman-vpn-core-linux-armv7.tar.gz
 # (32-bit ARM routers; docs/OPENWRT.md), each an arman-vpn-core-linux-<arch>

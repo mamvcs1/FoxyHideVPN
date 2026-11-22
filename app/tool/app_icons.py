@@ -1,4 +1,4 @@
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 """Generate Foxy Hide VPN artwork for every supported platform.
 
 The single source of truth is docs/images/logo.png. Run from app/:

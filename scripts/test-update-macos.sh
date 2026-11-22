@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Tries the macOS app's own update end to end, on CI's Mac (GitHub
 # Actions), as a user's copy goes through it, from a version before the
 # rename to Arman VPN (1.0.9) on: the released app of version <old>

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Installs or updates Arman VPN from the newest release on GitHub:
 #
 #   curl -fsSL https://raw.githubusercontent.com/armanlife/arman-vpn-client/main/install.sh | bash

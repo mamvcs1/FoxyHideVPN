@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Builds the macOS app with its core into dist/Foxy-Hide-VPN-<version>-macOS.dmg:
 # "Foxy Hide VPN.app" (Apple silicon and Intel), with arman-vpn-core (the Go
 # core, which the app starts with -app) and arman-vpn-tun (the TUN mode's

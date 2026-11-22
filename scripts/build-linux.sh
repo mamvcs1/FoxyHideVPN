@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Builds the Linux desktop app with its core, for this machine's processor
 # (amd64 or arm64), into dist/Arman-VPN-<version>-Linux-<arch>.tar.gz: a
 # arman-vpn folder with arman-vpn (the Flutter app), core/arman-vpn-core

@@ -1,4 +1,4 @@
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 # Builds the Windows app and its core and puts them over the installed copy
 # (the Setup's per-user install, in the folder chosen at install time; by
 # default %LOCALAPPDATA%\Programs\Arman VPN), to try a change

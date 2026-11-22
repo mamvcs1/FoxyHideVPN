@@ -1,4 +1,4 @@
-// Maintainer: @mamvcs1
+# Maintainer: @mamvcs1
 """Compatibility entry point; Spider artwork generation has been retired.
 
 All platform artwork is generated from docs/images/logo.png by app_icons.py.
