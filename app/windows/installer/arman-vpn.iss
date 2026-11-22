@@ -1,11 +1,11 @@
-﻿; The Windows installer of Arman VPN (Inno Setup 6). scripts\build-windows.ps1
+﻿; The Windows installer of Foxy Hide VPN (Inno Setup 6). scripts\build-windows.ps1
 ; compiles it with the built app:
 ;
 ;   ISCC /DAppVersion=1.1.9 /DSourceDir=<the app's folder> /DOutputDir=<dir>
 ;        /DOutputName=<file name without .exe> arman-vpn.iss
 ;
 ; It installs for the current user only, without administrator rights, by
-; default into %LOCALAPPDATA%\Programs\Arman VPN (apart from
+; default into %LOCALAPPDATA%\Programs\Foxy Hide VPN (apart from
 ; Mozilla's own client). The first install lets the user choose another
 ; folder; it must be one the user can write to, because the app keeps its
 ; data (accounts, settings, logs) in user-data beside it. A new version
@@ -20,9 +20,9 @@
 ; itself and installs the service in Program Files; the uninstall removes it
 ; again.
 
-#define AppName "spider firefox vpn"
-#define AppExe "arman-vpn.exe"
-#define AppDir "Arman VPN"
+#define AppName "Foxy Hide VPN"
+#define AppExe "foxy-hide-vpn.exe"
+#define AppDir "Foxy Hide VPN"
 #ifndef AppVersion
   #define AppVersion "0.0.0"
 #endif
@@ -33,7 +33,7 @@
   #define OutputDir "."
 #endif
 #ifndef OutputName
-  #define OutputName "Arman-VPN-Setup"
+  #define OutputName "Foxy-Hide-VPN-Setup"
 #endif
 
 [Setup]
@@ -43,10 +43,10 @@ AppId={{6F3A2C1E-9B4D-4E7A-8C21-5D0F7B9E4A63}
 AppName={#AppName}
 AppVersion={#AppVersion}
 AppVerName={#AppName} {#AppVersion}
-AppPublisher=Arman
-AppPublisherURL=https://github.com/armanlife/arman-vpn-client
-AppSupportURL=https://github.com/armanlife/arman-vpn-client/issues
-AppUpdatesURL=https://github.com/armanlife/arman-vpn-client/releases
+AppPublisher=Foxy Hide
+AppPublisherURL=https://github.com/mamvcs1/FoxyHideVPN
+AppSupportURL=https://github.com/mamvcs1/FoxyHideVPN/issues
+AppUpdatesURL=https://github.com/mamvcs1/FoxyHideVPN/releases
 VersionInfoVersion={#AppVersion}
 DefaultDirName={code:DefaultDir}
 ; The folder is asked on the first install only; an update goes where the
