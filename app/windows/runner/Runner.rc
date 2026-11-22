@@ -89,12 +89,12 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "Arman" "\0"
+            VALUE "CompanyName", "Foxy Hide" "\0"
             VALUE "FileDescription", "Foxy Hide VPN" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "arman-vpn" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2026 Arman" "\0"
-            VALUE "OriginalFilename", "arman-vpn.exe" "\0"
+            VALUE "InternalName", "foxy-hide-vpn" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2026 Foxy Hide" "\0"
+            VALUE "OriginalFilename", "foxy-hide-vpn.exe" "\0"
             VALUE "ProductName", "Foxy Hide VPN" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
