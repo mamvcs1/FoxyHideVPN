@@ -224,7 +224,7 @@ func TestResetLoginScreen(t *testing.T) {
 		ui.handleKey('\r')
 	}
 	typeLine("me")
-	for _, r := range "secret" {
+	for _, r := range "secret123456" {
 		ui.handleKey(r)
 	}
 	ui.mu.Lock()
