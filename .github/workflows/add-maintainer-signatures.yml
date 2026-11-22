@@ -1,0 +1,102 @@
+name: Add maintainer signatures
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sign-source-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Add maintainer signature to first-party source files
+        shell: bash
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+          import ast
+
+          root = Path(".")
+          extensions = {
+              ".go", ".dart", ".kt", ".kts", ".java", ".swift", ".m", ".mm",
+              ".c", ".h", ".cc", ".cpp", ".hpp", ".rs", ".py", ".js", ".jsx",
+              ".ts", ".tsx", ".vue", ".html", ".css", ".scss", ".sh", ".bash",
+              ".zsh", ".ps1", ".bat", ".cmd", ".sql"
+          }
+          excluded = {
+              "vendor", "node_modules", "build", "dist", ".dart_tool", ".gradle",
+              "generated", "third-part", "third_party", "thirdparty", ".git", "Flutter"
+          }
+          marker = "Maintainer: @mamvcs1"
+          changed = []
+
+          for path in root.rglob("*"):
+              if not path.is_file() or path.suffix.lower() not in extensions:
+                  continue
+              parts = set(path.parts)
+              if parts & excluded or path.as_posix().startswith("app/android/hev-socks5-tunnel/"):
+                  continue
+              if path.name.startswith("app_localizations") and path.suffix == ".dart":
+                  continue
+              try:
+                  source = path.read_text(encoding="utf-8")
+              except (UnicodeDecodeError, OSError):
+                  continue
+              if marker in source:
+                  continue
+
+              ext = path.suffix.lower()
+              comment = "<!-- " + marker + " -->" if ext in {".html", ".vue"} else (
+                  "/* " + marker + " */" if ext in {".css", ".scss"} else "// " + marker
+              )
+              lines = source.splitlines(keepends=True)
+              insert_at = 0
+
+              if ext == ".go":
+                  # Keep package documentation attached to the package clause.
+                  for i, line in enumerate(lines):
+                      if line.lstrip().startswith("package "):
+                          insert_at = i + 1
+                          break
+              elif ext in {".sh", ".bash", ".zsh", ".py"} and lines and lines[0].startswith("#!"):
+                  insert_at = 1
+                  if ext == ".py" and len(lines) > 1 and "coding" in lines[1]:
+                      insert_at = 2
+              elif ext in {".html"} and source.lstrip().lower().startswith("<!doctype"):
+                  for i, line in enumerate(lines):
+                      if ">" in line:
+                          insert_at = i + 1
+                          break
+              elif ext == ".dart":
+                  for i, line in enumerate(lines):
+                      if line.lstrip().startswith("library "):
+                          insert_at = i + 1
+                          break
+
+              lines.insert(insert_at, comment + "\n")
+              path.write_text("".join(lines), encoding="utf-8", newline="")
+              changed.append(path.as_posix())
+
+          print(f"Added maintainer signature to {len(changed)} first-party source files.")
+          for name in changed:
+              print(name)
+          PY
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No source files needed signing."
+            exit 0
+          fi
+          git commit -m "Add maintainer signature to first-party source files"
+          git push origin HEAD:main
