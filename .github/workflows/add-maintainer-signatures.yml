@@ -49,13 +49,25 @@ jobs:
                   source = path.read_text(encoding="utf-8")
               except (UnicodeDecodeError, OSError):
                   continue
-              if marker in source:
-                  continue
-
               ext = path.suffix.lower()
-              comment = "<!-- " + marker + " -->" if ext in {".html", ".vue"} else (
-                  "/* " + marker + " */" if ext in {".css", ".scss"} else "// " + marker
-              )
+              if ext in {".html", ".vue"}:
+                  comment = "<!-- " + marker + " -->"
+              elif ext in {".css", ".scss"}:
+                  comment = "/* " + marker + " */"
+              elif ext in {".sh", ".bash", ".zsh", ".py", ".ps1", ".bat", ".cmd"}:
+                  comment = "# " + marker
+              elif ext == ".sql":
+                  comment = "-- " + marker
+              else:
+                  comment = "// " + marker
+
+              if marker in source:
+                  corrected = source.replace("// " + marker, comment).replace("# " + marker, comment).replace("-- " + marker, comment).replace("/* " + marker + " */", comment).replace("<!-- " + marker + " -->", comment)
+                  if corrected == source:
+                      continue
+                  path.write_text(corrected, encoding="utf-8", newline="")
+                  changed.append(path.as_posix())
+                  continue
               lines = source.splitlines(keepends=True)
               insert_at = 0
 
