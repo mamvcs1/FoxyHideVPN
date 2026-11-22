@@ -38,9 +38,8 @@ var pageFiles embed.FS
 
 const (
 	sessionCookieName = "fvpn_session"
-	// sessionLifetime is the longest a browser keeps a cookie (Chrome caps
-	// cookie lifetimes at 400 days).
-	sessionLifetime     = 400 * 24 * time.Hour
+	// Dashboard sessions expire after 12 hours; the user can sign in again.
+	sessionLifetime     = 12 * time.Hour
 	failedLoginDelay    = time.Second
 	maxRequestBodyBytes = 1 << 20
 	minPasswordLength   = 12
