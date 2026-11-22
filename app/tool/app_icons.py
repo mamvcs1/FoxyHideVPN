@@ -8,14 +8,13 @@ dashboard and Flutter app assets so every release carries the same Foxy mark.
 import os
 from io import BytesIO
 
-import cairosvg
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.abspath(os.path.join(HERE, '..'))
 ROOT = os.path.abspath(os.path.join(APP, '..'))
 CORE = os.path.join(ROOT, 'core')
-SOURCE = os.path.join(ROOT, 'docs', 'images', 'foxy-hide-mark.svg')
+SOURCE = os.path.join(ROOT, 'docs', 'images', 'logo.png')
 RES = os.path.join(APP, 'android', 'app', 'src', 'main', 'res')
 DENSITY = {'mdpi': 1, 'hdpi': 1.5, 'xhdpi': 2, 'xxhdpi': 3, 'xxxhdpi': 4}
 WINDOWS_SIZES = [16, 20, 24, 32, 40, 48, 64, 128, 256]
@@ -199,8 +198,12 @@ def macos_icons(art):
 def main():
     if not os.path.isfile(SOURCE):
         raise SystemExit('Foxy source logo not found: ' + SOURCE)
-    png = cairosvg.svg2png(url=SOURCE, output_width=1024, output_height=1024)
-    art = Image.open(BytesIO(png)).convert('RGBA')
+    art = Image.open(SOURCE).convert('RGBA')
+    art.thumbnail((1024, 1024), Image.Resampling.LANCZOS)
+    if art.size != (1024, 1024):
+        canvas = Image.new('RGBA', (1024, 1024), (0, 0, 0, 0))
+        canvas.alpha_composite(art, ((1024 - art.width) // 2, (1024 - art.height) // 2))
+        art = canvas
     if art.getchannel('A').getbbox() is None:
         raise SystemExit('Foxy source logo is fully transparent')
     android(art)
