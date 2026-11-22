@@ -129,7 +129,7 @@ jobs:
           package-manager-cache: false
       - name: Relay worker syntax
         run: node --check docs/relay/cloudflare/worker.js
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - name: Foxy artwork
@@ -171,7 +171,7 @@ jobs:
         with:
           go-version-file: core/go.mod
           cache-dependency-path: core/go.sum
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - run: python -m pip install Pillow CairoSVG
@@ -230,7 +230,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 21
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - run: python -m pip install Pillow CairoSVG
@@ -343,7 +343,7 @@ jobs:
         with:
           go-version-file: core/go.mod
           cache-dependency-path: core/go.sum
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - run: python -m pip install Pillow CairoSVG
@@ -414,7 +414,7 @@ jobs:
         with:
           go-version-file: core/go.mod
           cache-dependency-path: core/go.sum
-      - uses: actions/setup-python@v6
+      - uses: actions/setup-python@v7
         with:
           python-version: '3.x'
       - name: Artwork dependencies
