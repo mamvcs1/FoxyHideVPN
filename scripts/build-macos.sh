@@ -37,6 +37,7 @@ fi
 goflags="-s -w -X $module/internal/version.Current=$version"
 [ -z "$public" ] || goflags="$goflags -X $module/internal/signing.Key=$public"
 
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix cairo)/lib${DYLD_FALLBACK_LIBRARY_PATH:+:$DYLD_FALLBACK_LIBRARY_PATH}"
 (cd "$root/app" && python3 tool/app_icons.py && flutter pub get && flutter build macos --release --no-pub --dart-define=APP_VERSION="$version")
 
 stage="$(mktemp -d)"
