@@ -457,7 +457,7 @@ class _NoCore extends StatelessWidget {
 }
 
 /// The computer's side menu: a dark capsule of Home, Servers, Accounts,
-/// Settings and Logs, the chosen one grown into a green pill with its name
+/// Settings and Logs, the chosen one grown into the Foxy red accent with its name
 /// sliding out, and the account (its page) at the bottom.
 class _PillNav extends StatelessWidget {
   const _PillNav({
