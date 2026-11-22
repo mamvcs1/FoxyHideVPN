@@ -127,7 +127,7 @@ class PillNavBar extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         for (var i = 0; i < items.length; i++) ...[
-          if (i > 0) const SizedBox(height: 6),
+          if (i > 0) const SizedBox(height: 4),
           _PillItem(
             icon: i == selected ? items[i].$2 : items[i].$1,
             label: items[i].$3,
