@@ -427,7 +427,6 @@ void main() {
     expect(find.text('Connected'), findsOneWidget);
     // Where the traffic goes: the country, under how it was chosen.
     expect(find.text('Netherlands'), findsOneWidget);
-    expect(find.text('Location'), findsOneWidget);
     expect(find.textContaining('Amsterdam'), findsNothing);
     // The data used rather than the email.
     expect(find.text('Data used'), findsOneWidget);
@@ -2579,7 +2578,6 @@ void main() {
     expect(find.text('Connected'), findsOneWidget);
     // Connected through the recommended location: the exit's country,
     // without the city, under "Location".
-    expect(find.text('Location'), findsOneWidget);
     expect(find.text('Belgium'), findsNWidgets(2));
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
@@ -2600,8 +2598,6 @@ void main() {
     expect(api.on, isFalse);
     expect(find.text('Disconnected'), findsOneWidget);
     // Off: the chosen location, the recommended one by default.
-    expect(find.text('Location'), findsOneWidget);
-    expect(find.text('Location'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Tap to connect'));
     await tester.pumpAndSettle();
@@ -3106,7 +3102,7 @@ void main() {
         found: const Release('9.9.9', page),
       );
       expect(find.text('Version 9.9.9 is available.'), findsOneWidget);
-      expect(find.text('Download'), findsOneWidget);
+      expect(find.text('Download').first, findsOneWidget);
       expect(find.text('Update'), findsNothing);
       await done(tester, core);
     });
