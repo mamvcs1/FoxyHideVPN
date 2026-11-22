@@ -3224,6 +3224,9 @@ void main() {
         update: {'state': 'ready', 'version': '9.9.9'},
         args: ['--autostart', '--data-dir=elsewhere'],
       );
+      // Let the asynchronous status listener finish the install request.
+      await tester.pump();
+      await tester.pump();
       // With the app's own arguments (its data folder too, so the new
       // version opens the same one), and before it connects.
       expect(api.installs.single.$1, '9.9.9');
