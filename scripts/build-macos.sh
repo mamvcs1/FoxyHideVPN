@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Builds the macOS app with its core into dist/Arman-VPN-<version>-macOS.dmg:
-# "Arman VPN.app" (Apple silicon and Intel), with arman-vpn-core (the Go
+# Builds the macOS app with its core into dist/Foxy-Hide-VPN-<version>-macOS.dmg:
+# "Foxy Hide VPN.app" (Apple silicon and Intel), with arman-vpn-core (the Go
 # core, which the app starts with -app) and arman-vpn-tun (the TUN mode's
 # service, which the app installs as a launchd daemon the first time the
 # mode is chosen) beside the app's executable in Contents/MacOS, and a link
 # to Applications to drag it to. The same app goes alone into
-# dist/Arman-VPN-<version>-macOS.tar.gz, which the app downloads to update
+# dist/Foxy-Hide-VPN-<version>-macOS.tar.gz, which the app downloads to update
 # itself (core/internal/update). The version is "major.minor.patch" from
 # app/pubspec.yaml.
 #
@@ -42,8 +42,8 @@ export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix cairo)/lib${DYLD_FALLBACK_LIB
 
 stage="$(mktemp -d)"
 trap 'rm -rf "$stage"' EXIT
-app="$stage/Arman VPN.app"
-cp -R "$root/app/build/macos/Build/Products/Release/Arman VPN.app" "$app"
+app="$stage/Foxy Hide VPN.app"
+cp -R "$root/app/build/macos/Build/Products/Release/Foxy Hide VPN.app" "$app"
 
 # The core and the TUN service for both processors, one file each.
 for arch in arm64 amd64; do
@@ -60,7 +60,7 @@ lipo -create -output "$tun" "$stage/tun-arm64" "$stage/tun-amd64"
 # Links under the app's and the core's names before 1.0.9, which the update
 # of those versions checks for (core/internal/update/legacy_darwin.go); they
 # stay, as the bundle is sealed.
-ln -s "Arman VPN" "$app/Contents/MacOS/Firefox VPN"
+ln -s "Foxy Hide VPN" "$app/Contents/MacOS/Firefox VPN"
 ln -s arman-vpn-core "$app/Contents/MacOS/firefox-vpn-core"
 
 # The programs inside the bundle change it: sign them, then the whole app.
@@ -83,14 +83,14 @@ codesign --verify --deep --strict "$app"
 # extended attributes or AppleDouble files (._*), which would lie in the
 # bundle unsealed.
 mkdir -p "$root/dist"
-archive="$root/dist/Arman-VPN-$version-macOS.tar.gz"
-COPYFILE_DISABLE=1 tar --no-mac-metadata -czf "$archive" -C "$stage" "Arman VPN.app"
+archive="$root/dist/Foxy-Hide-VPN-$version-macOS.tar.gz"
+COPYFILE_DISABLE=1 tar --no-mac-metadata -czf "$archive" -C "$stage" "Foxy Hide VPN.app"
 
 dmg="$stage/dmg"
 mkdir "$dmg"
 mv "$app" "$dmg/"
 ln -s /Applications "$dmg/Applications"
-out="$root/dist/Arman-VPN-$version-macOS.dmg"
+out="$root/dist/Foxy-Hide-VPN-$version-macOS.dmg"
 rm -f "$out"
-hdiutil create -volname "Arman VPN" -srcfolder "$dmg" -ov -format UDZO "$out" >/dev/null
+hdiutil create -volname "Foxy Hide VPN" -srcfolder "$dmg" -ov -format UDZO "$out" >/dev/null
 echo "Built $out ($(du -h "$out" | cut -f1)) and $archive ($(du -h "$archive" | cut -f1))"
