@@ -186,10 +186,11 @@ jobs:
         shell: pwsh
         run: |
           choco install gtk-runtime -y --no-progress
-          $gtkBin = "$env:ProgramFiles\GTK3-Runtime Win64\bin"
-          if (-not (Test-Path "$gtkBin\libcairo-2.dll")) {
-            throw "GTK runtime installed without libcairo-2.dll at $gtkBin"
+          $cairo = Get-ChildItem -Path "$env:ProgramFiles (x86)\GTK2-Runtime","$env:ProgramFiles\GTK3-Runtime Win64" -Filter libcairo-2.dll -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $cairo) {
+            throw "GTK runtime installed but libcairo-2.dll was not found"
           }
+          $gtkBin = $cairo.DirectoryName
           "$gtkBin" >> $env:GITHUB_PATH
           $env:PATH = "$gtkBin;$env:PATH"
       - name: Inno Setup
