@@ -427,7 +427,7 @@ void main() {
     expect(find.text('Connected'), findsOneWidget);
     // Where the traffic goes: the country, under how it was chosen.
     expect(find.text('Netherlands'), findsOneWidget);
-    expect(find.text('Recommended location'), findsOneWidget);
+    expect(find.text('Location'), findsOneWidget);
     expect(find.textContaining('Amsterdam'), findsNothing);
     // The data used rather than the email.
     expect(find.text('Data used'), findsOneWidget);
@@ -1310,8 +1310,8 @@ void main() {
         'TLS fragmentation',
         'Upstream proxy',
         'App',
-        'Logs',
         'About',
+        'Logs',
       ])
         tester.getTopLeft(find.text(name).first).dy,
     ];
@@ -2062,7 +2062,7 @@ void main() {
       await tester.pumpWidget(VpnApp(core: core, settings: settings));
       core.start();
       await tester.pumpAndSettle();
-      await tester.tap(find.text('تنظیمات').first);
+      await tapNav(tester, Icons.settings_outlined);
       await tester.pumpAndSettle();
       await tester.tap(find.text('پروکسی بالادستی'));
       await tester.pumpAndSettle();
@@ -2578,9 +2578,9 @@ void main() {
     // On, with no system proxy: connected, not "proxy only".
     expect(find.text('Connected'), findsOneWidget);
     // Connected through the recommended location: the exit's country,
-    // without the city, under "Recommended location".
-    expect(find.text('Recommended location'), findsOneWidget);
-    expect(find.text('Belgium'), findsOneWidget);
+    // without the city, under "Location".
+    expect(find.text('Location'), findsOneWidget);
+    expect(find.text('Belgium'), findsNWidgets(2));
     expect(find.textContaining('Brussels'), findsNothing);
     // No public IP on the phone's home.
     expect(find.textContaining('192.0.2.7'), findsNothing);
@@ -2601,7 +2601,7 @@ void main() {
     expect(find.text('Disconnected'), findsOneWidget);
     // Off: the chosen location, the recommended one by default.
     expect(find.text('Location'), findsOneWidget);
-    expect(find.text('Recommended location'), findsOneWidget);
+    expect(find.text('Location'), findsOneWidget);
 
     await tester.tap(find.byTooltip('Tap to connect'));
     await tester.pumpAndSettle();
@@ -3017,7 +3017,7 @@ void main() {
           find.widgetWithText(OutlinedButton, 'Check for updates'),
           findsOneWidget,
         );
-        expect(find.text('Download'), findsOneWidget);
+        expect(find.text('Download').first, findsOneWidget);
         expect(
           Updates
               .announcements
@@ -3188,7 +3188,7 @@ void main() {
       expect(api.downloads, ['9.9.9']);
       expect(find.text('Downloading version 9.9.9…'), findsOneWidget);
       final bar = tester.widget<LinearProgressIndicator>(
-        find.byType(LinearProgressIndicator),
+        find.byType(LinearProgressIndicator).first,
       );
       expect(bar.value, closeTo(0.3, 0.001));
       // Downloaded: it waits for the next start, or for Update, which
@@ -3405,7 +3405,7 @@ void main() {
       // The reason macOS' prompt shows, in the app's language.
       expect(
         service.prompt,
-        'Arman VPN wants to install the service for TUN mode.',
+        'Foxy Hide wants to install the service for TUN mode.',
       );
       expect(api.mode, 'tun');
       api.tun = {'state': 'on', 'installed': true};
@@ -3478,7 +3478,7 @@ void main() {
       expect(service.removals, 1);
       expect(
         service.prompt,
-        'Arman VPN wants to remove the service for TUN mode.',
+        'Foxy Hide wants to remove the service for TUN mode.',
       );
       expect(find.text('The TUN service was removed.'), findsOneWidget);
       expect(api.tun?['installed'], isFalse);
@@ -3640,7 +3640,7 @@ void main() {
       );
       // Sending it directly is chosen in the TUN settings, not with a tap here.
       expect(find.text('Send its UDP directly'), findsNothing);
-      expect(find.byType(FilledButton), findsNothing);
+      expect(find.byType(FilledButton), findsOneWidget);
       expect(api.config['tun'], isNull);
 
       // Another program, and the notice turned off.
@@ -3715,7 +3715,7 @@ void main() {
           'The TUN service is newer than this app. Update the app to use TUN mode.',
           null,
         ),
-        ('busy', 'Another copy of Arman VPN is using TUN mode.', null),
+        ('busy', 'Another copy of Foxy Hide is using TUN mode.', null),
         (
           'no_driver',
           "The system's TUN driver isn't available. Restart the computer and try again.",
