@@ -47,8 +47,15 @@ try {
     }
     # Regenerate every platform icon and the in-app emblem from the Foxy
     # shield before Flutter bundles its assets. Requires Python + Pillow.
-    python tool/app_icons.py
-    if ($LASTEXITCODE -ne 0) { throw 'Foxy icon generation failed (install Pillow for Python)' }
+    # MSYS2 adds its own python.exe to PATH for Cairo DLLs. Invoke the
+    # interpreter provisioned by actions/setup-python so CairoSVG and Pillow
+    # come from the same environment where pip installed them.
+    if ($env:pythonLocation) {
+        & "$env:pythonLocation\python.exe" tool/app_icons.py
+    } else {
+        python tool/app_icons.py
+    }
+    if ($LASTEXITCODE -ne 0) { throw 'Foxy icon generation failed (see Python/CairoSVG import error above)' }
     # The packages from the local cache when it has them; from pub.dev
     # otherwise (a new machine). pub.dev refuses some requests from some
     # countries (its security advisories), which an offline get avoids.
