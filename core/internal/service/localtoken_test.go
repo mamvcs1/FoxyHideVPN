@@ -190,7 +190,7 @@ func TestSetDashboardLogin(t *testing.T) {
 	if rec := set(d.localToken, `{"username":"me","password":"short"}`); rec.Code != http.StatusBadRequest {
 		t.Fatalf("a five-character password: %d %s", rec.Code, rec.Body.String())
 	}
-	rec = set(d.localToken, `{"username":"me","password":"secret12"}`)
+	rec = set(d.localToken, `{"username":"me","password":"secret123456"}`)
 	if login := decodeBody[map[string]string](t, rec); rec.Code != http.StatusOK || login["username"] != "me" || login["password"] != "secret12" {
 		t.Fatalf("own login: %d %+v", rec.Code, login)
 	}
