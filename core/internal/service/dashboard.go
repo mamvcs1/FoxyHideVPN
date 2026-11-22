@@ -43,7 +43,7 @@ const (
 	sessionLifetime     = 400 * 24 * time.Hour
 	failedLoginDelay    = time.Second
 	maxRequestBodyBytes = 1 << 20
-	minPasswordLength   = 6
+	minPasswordLength   = 12
 	// A sign-in link from the app works once, within loginLinkLifetime; at
 	// most maxLoginLinks wait at a time.
 	loginLinkLifetime = 15 * time.Minute
