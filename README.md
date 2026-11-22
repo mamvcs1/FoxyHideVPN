@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/foxy-hide-banner.svg" alt="Foxy Hide VPN" width="100%">
+  <img src="docs/images/logo.png" alt="Foxy Hide VPN" width="100%">
 </p>
 
 <p align="center">
@@ -31,7 +31,7 @@
 | 🔁 **چند حساب** | وقتی حجم یک حساب تمام شود، حساب بعدی خودکار وصل می‌شود |
 | 🌍 **انتخاب کشور** | پرچم‌ها را بزنید، یا بگذارید سریع‌ترین سرور خودکار انتخاب شود |
 | 📊 **آمار زنده** | سرعت دانلود و آپلود، تأخیر، مدت اتصال و **حجم مصرف شده از ۵۰ گیگ** |
-| 🌗 **تم تیره و روشن** | با لوگوی اسپایدر و طراحی ساده |
+| 🌗 **تم تیره و روشن** | با هویت بصری Foxy Hide و طراحی ساده |
 | 📜 **تب لاگ** | برای پیدا کردن مشکل اتصال |
 | 🛡️ **سرور رله** | اگر Mozilla روی شبکهٔ شما بسته است، با Cloudflare Worker خودتان وصل شوید |
 
@@ -66,7 +66,7 @@
 
 **بعد از نصب**
 1. برنامه را باز کنید و در **Accounts** یک حساب Firefox اضافه کنید (ایمیل، رمز، و کد تأیید در صورت درخواست).
-2. روی **دایرهٔ اسپایدر** بزنید تا وصل شود.
+2. روی **دکمهٔ اتصال** بزنید تا وصل شود.
 3. برای عوض کردن کشور، روی پرچم‌ها یا کارت مکان بزنید.
 4. حجم مصرف شده از ۵۰ گیگ را در صفحهٔ اصلی ببینید.
 
@@ -133,7 +133,7 @@ A **free VPN** for **Android, Windows, macOS and Linux**. Sign in with your own 
 | 🔁 **Multi-account** | When one account's data runs out, the next takes over |
 | 🌍 **Pick a country** | Tap a flag, or let the app choose the fastest server |
 | 📊 **Live stats** | Download and upload speed, delay, connection time, and **data used of 50 GB** |
-| 🌗 **Dark and light** | Spider logo, clean design |
+| 🌗 **Dark and light** | Foxy Hide branding, clean design |
 | 📜 **Logs tab** | To find out why a connection fails |
 | 🛡️ **Relay server** | If Mozilla is blocked on your network, connect through your own Cloudflare Worker |
 
@@ -157,7 +157,7 @@ Get the latest build from **Releases**:
 - **macOS:** open the dmg and drag the app to Applications. If macOS blocks it: right-click → **Open**.
 - **Linux:** extract with `tar -xzf` and run the app.
 
-Then: add a Firefox account in **Accounts**, tap the **spider button** to connect, tap a flag to change country, and watch your data used of 50 GB on the home screen.
+Then: add a Firefox account in **Accounts**, tap the **Connect button** to connect, tap a flag to change country, and watch your data used of 50 GB on the home screen.
 
 ## ❓ FAQ
 
