@@ -182,17 +182,18 @@ jobs:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           channel: stable
           cache: true
-      - name: Cairo runtime
+      - name: Install 64-bit Cairo runtime
         shell: pwsh
         run: |
-          choco install gtk-runtime -y --no-progress
-          $cairo = Get-ChildItem -Path "$env:ProgramFiles (x86)\GTK2-Runtime","$env:ProgramFiles\GTK3-Runtime Win64" -Filter libcairo-2.dll -Recurse -ErrorAction SilentlyContinue | Select-Object -First 1
-          if (-not $cairo) {
-            throw "GTK runtime installed but libcairo-2.dll was not found"
-          }
-          $gtkBin = $cairo.DirectoryName
-          "$gtkBin" >> $env:GITHUB_PATH
-          $env:PATH = "$gtkBin;$env:PATH"
+          choco install msys2 -y --no-progress
+          $bash = "C:\msys64\usr\bin\bash.exe"
+          if (-not (Test-Path $bash)) { throw "MSYS2 bash was not installed" }
+          & $bash -lc "pacman -Syu --noconfirm --needed"
+          if ($LASTEXITCODE -ne 0) { throw "MSYS2 package database update failed" }
+          & $bash -lc "pacman -S --noconfirm --needed mingw-w64-x86_64-cairo"
+          if ($LASTEXITCODE -ne 0) { throw "64-bit Cairo installation failed" }
+          "C:\msys64\mingw64\bin" >> $env:GITHUB_PATH
+          $env:PATH = "C:\msys64\mingw64\bin;$env:PATH"
       - name: Inno Setup
         run: choco upgrade innosetup -y --no-progress
       - name: Build
