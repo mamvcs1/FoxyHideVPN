@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Cloud backup and device-to-device transfer (Android 12 and later), as
-     backup_rules.xml: everything but what the core makes again. -->
+<!-- Keep non-sensitive preferences, but never transfer VPN credentials or local secrets. -->
 <data-extraction-rules>
     <cloud-backup>
         <exclude domain="file" path="core/logs/" />
@@ -8,11 +7,6 @@
         <exclude domain="file" path="core/servers.json" />
         <exclude domain="file" path="core/status.json" />
         <exclude domain="file" path="core/local-api.token" />
-        <!-- Device-to-device transfer must not copy account credentials or local secrets. -->
-        <exclude domain="file" path="core/accounts/" />
-        <exclude domain="file" path="core/config.json" />
-        <exclude domain="file" path="core/dashboard.key" />
-        <!-- Never back up OAuth refresh tokens or configuration that can contain proxy credentials. Users sign in again after restore. -->
         <exclude domain="file" path="core/accounts/" />
         <exclude domain="file" path="core/config.json" />
         <exclude domain="file" path="core/dashboard.key" />
@@ -25,6 +19,9 @@
         <exclude domain="file" path="core/servers.json" />
         <exclude domain="file" path="core/status.json" />
         <exclude domain="file" path="core/local-api.token" />
+        <exclude domain="file" path="core/accounts/" />
+        <exclude domain="file" path="core/config.json" />
+        <exclude domain="file" path="core/dashboard.key" />
         <exclude domain="file" path="core/tun2socks.yml" />
         <exclude domain="file" path="core/update/" />
     </device-transfer>
