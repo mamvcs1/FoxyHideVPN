@@ -1,4 +1,5 @@
 package fxa
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

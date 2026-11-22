@@ -1,4 +1,5 @@
 package update
+// Maintainer: @mamvcs1
 
 // Up to 1.0.8 the program was called Firefox VPN, and its files and
 // folders had that name (firefox-vpn.exe, core/firefox-vpn-core.exe, the

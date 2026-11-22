@@ -2,6 +2,7 @@
 // collection and applies the record filters Firefox evaluates before
 // choosing a proxy location.
 package serverlist
+// Maintainer: @mamvcs1
 
 import (
 	"context"

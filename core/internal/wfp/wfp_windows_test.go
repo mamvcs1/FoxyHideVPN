@@ -1,6 +1,7 @@
 //go:build amd64 || arm64
 
 package wfp
+// Maintainer: @mamvcs1
 
 import (
 	"testing"

@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 "use strict";
 
 // Foxy Hide VPN dashboard. All server data is rendered with textContent; no

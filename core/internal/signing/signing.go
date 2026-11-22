@@ -4,6 +4,7 @@
 // which the installed service checks before it replaces itself
 // (internal/tunservice). tools/sign makes the key and the signatures.
 package signing
+// Maintainer: @mamvcs1
 
 import (
 	"crypto/ed25519"

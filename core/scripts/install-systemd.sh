@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+// Maintainer: @mamvcs1
 # Installs arman-vpn-core as a systemd service on Linux, from the source
 # tree or from a prebuilt binary. The release's install.sh (at the repository
 # root) runs it with the downloaded binary and keeps it as the arman-vpn

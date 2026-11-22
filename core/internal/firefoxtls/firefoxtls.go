@@ -3,6 +3,7 @@
 // clients apart by their hello and may refuse requests (HTTP 406) from one
 // that is not a browser's, such as Go's own.
 package firefoxtls
+// Maintainer: @mamvcs1
 
 import (
 	"context"

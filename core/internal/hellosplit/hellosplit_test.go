@@ -1,4 +1,5 @@
 package hellosplit
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

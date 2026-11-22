@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 #include "win32_window.h"
 
 #include <dwmapi.h>

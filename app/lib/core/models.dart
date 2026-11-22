@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 // Views of the core's dashboard API (core/doc/DASHBOARD.md). The parsers
 // are lenient: a missing or mistyped field becomes an empty value, so a
 // newer core never crashes the app.

@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 #include "desktop_bridge.h"
 
 #include <flutter/standard_method_codec.h>

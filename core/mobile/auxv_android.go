@@ -1,6 +1,7 @@
 //go:build android
 
 package mobile
+// Maintainer: @mamvcs1
 
 /*
 #include <sys/prctl.h>

@@ -1,6 +1,7 @@
 //go:build linux || darwin
 
 package main
+// Maintainer: @mamvcs1
 
 // runPlatform: the init system restarts the service after an update and
 // removes it after an uninstall, so nothing is left behind here.

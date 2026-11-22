@@ -1,4 +1,5 @@
 package netcheck
+// Maintainer: @mamvcs1
 
 import (
 	"context"

@@ -18,6 +18,7 @@
 // programs to change them while the TUN runs) and udp_refused. Protocol 3
 // added open's UDPPorts: the UDP the core takes, on the proxy's UDP ASSOCIATE.
 package tunapi
+// Maintainer: @mamvcs1
 
 import (
 	"bufio"

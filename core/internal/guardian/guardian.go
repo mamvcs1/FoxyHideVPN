@@ -2,6 +2,7 @@
 // the ProxyPass bearer token for the Fastly CONNECT proxies, reports quota
 // usage, and activates or reports the account's proxy entitlement.
 package guardian
+// Maintainer: @mamvcs1
 
 import (
 	"context"

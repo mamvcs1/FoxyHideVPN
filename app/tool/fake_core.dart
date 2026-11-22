@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 // A stand-in for the core's dashboard API with made-up data, for working
 // on the UI without a real core or real accounts. It never contacts the
 // network.

@@ -1,6 +1,7 @@
 //go:generate go run ../../tools/winres
 
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

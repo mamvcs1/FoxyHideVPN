@@ -7,6 +7,7 @@
 // Names that SOCKS clients send are not resolved here: they travel inside
 // the CONNECT request and Mozilla's exit resolves them.
 package resolver
+// Maintainer: @mamvcs1
 
 import (
 	"context"

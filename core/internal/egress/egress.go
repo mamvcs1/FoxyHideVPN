@@ -10,6 +10,7 @@
 // TUN's fake addresses) are asked of that network's own DNS servers
 // instead. Without a TUN nothing changes.
 package egress
+// Maintainer: @mamvcs1
 
 import (
 	"context"

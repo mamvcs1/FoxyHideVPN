@@ -1,6 +1,7 @@
 //go:build windows
 
 package netstate
+// Maintainer: @mamvcs1
 
 import "testing"
 

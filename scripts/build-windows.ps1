@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 # Builds the Windows app with its core into dist\:
 # - Foxy-Hide-VPN-<version>\: foxy-hide-vpn.exe (the Flutter app),
 #   core\arman-vpn-core.exe (the Go core, which the app starts with -app),

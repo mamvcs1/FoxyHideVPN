@@ -1,4 +1,5 @@
 package desktop
+// Maintainer: @mamvcs1
 
 import (
 	"os"

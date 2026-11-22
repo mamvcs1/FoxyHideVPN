@@ -1,6 +1,7 @@
 //go:build !windows && !linux && !darwin
 
 package update
+// Maintainer: @mamvcs1
 
 import "time"
 

@@ -1,6 +1,7 @@
 //go:build linux
 
 package netstate
+// Maintainer: @mamvcs1
 
 import (
 	"bufio"

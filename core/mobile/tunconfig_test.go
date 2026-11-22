@@ -1,4 +1,5 @@
 package mobile
+// Maintainer: @mamvcs1
 
 import (
 	"strings"

@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 pluginManagement {
     val flutterSdkPath =
         run {

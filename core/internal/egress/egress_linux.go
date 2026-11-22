@@ -1,6 +1,7 @@
 //go:build linux && !android
 
 package egress
+// Maintainer: @mamvcs1
 
 import (
 	"encoding/binary"

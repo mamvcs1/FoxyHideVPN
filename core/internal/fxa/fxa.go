@@ -3,6 +3,7 @@
 // issuance and refresh, the Fastly anti-bot challenge that guards the
 // account API, and the local OAuth token cache.
 package fxa
+// Maintainer: @mamvcs1
 
 import (
 	"context"

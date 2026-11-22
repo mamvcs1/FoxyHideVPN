@@ -1,6 +1,7 @@
 //go:build windows
 
 package desktop
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

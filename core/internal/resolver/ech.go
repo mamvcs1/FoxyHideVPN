@@ -1,4 +1,5 @@
 package resolver
+// Maintainer: @mamvcs1
 
 import (
 	"context"

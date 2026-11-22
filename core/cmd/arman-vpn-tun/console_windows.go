@@ -1,4 +1,5 @@
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"bufio"

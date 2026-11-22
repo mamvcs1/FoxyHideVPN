@@ -1,4 +1,5 @@
 package serverlist
+// Maintainer: @mamvcs1
 
 import (
 	"path/filepath"

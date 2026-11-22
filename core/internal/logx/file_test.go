@@ -1,4 +1,5 @@
 package logx
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

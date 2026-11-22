@@ -10,6 +10,7 @@
 // The objects are build output, not kept in Git; a build without them has
 // no icon, version information, or manifest.
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

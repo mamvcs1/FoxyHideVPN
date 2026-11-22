@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 # Prints the public half of the key that updates are signed with
 # (core\internal\signing): the release's SHA256SUMS.txt, which the Windows
 # app checks before it installs a new version, and arman-vpn-tun.exe,

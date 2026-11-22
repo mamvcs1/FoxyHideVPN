@@ -2,6 +2,7 @@
 // API request (Firefox Accounts, Guardian, Remote Settings). It is kept
 // separate from the data-plane CONNECT sessions and from http.DefaultClient.
 package controlplane
+// Maintainer: @mamvcs1
 
 import (
 	"context"

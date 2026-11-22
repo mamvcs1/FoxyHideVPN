@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+// Maintainer: @mamvcs1
 # Prints a release's notes for <tag>: README.md's download table and nothing
 # else, linking to this release's own files (their versioned names,
 # Arman-VPN-1.2.3-...).

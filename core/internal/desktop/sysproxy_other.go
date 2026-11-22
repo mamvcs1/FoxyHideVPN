@@ -1,6 +1,7 @@
 //go:build !windows && !linux && !darwin
 
 package desktop
+// Maintainer: @mamvcs1
 
 func systemProxySupported() bool { return false }
 

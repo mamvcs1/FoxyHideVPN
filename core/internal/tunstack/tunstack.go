@@ -12,6 +12,7 @@
 // own connections off the adapter (the core binds them to the physical
 // interface) before anything is routed into it.
 package tunstack
+// Maintainer: @mamvcs1
 
 import (
 	"context"

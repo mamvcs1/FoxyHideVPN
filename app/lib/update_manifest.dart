@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 import 'dart:io';
 
 /// Android's scheduled offer and its user-requested latest stable release.

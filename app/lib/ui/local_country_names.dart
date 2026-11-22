@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 /// Country names in the app's languages other than English, by language
 /// (AppLocalizations.localeName) and ISO 3166-1 code: every country in
 /// Mozilla's server list and a few more the exit or the user's region can

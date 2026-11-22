@@ -13,6 +13,7 @@
 // ARMAN_VPN_SIGNING_KEY_FILE. A key file holds the base64 seed on one
 // line; keep it out of the repository (*.signing-key is ignored).
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"crypto/ed25519"

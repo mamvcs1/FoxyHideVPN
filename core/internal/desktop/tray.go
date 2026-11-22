@@ -1,6 +1,7 @@
 //go:build windows || linux
 
 package desktop
+// Maintainer: @mamvcs1
 
 import (
 	"context"

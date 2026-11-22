@@ -1,6 +1,7 @@
 //go:build !windows && !linux
 
 package netstate
+// Maintainer: @mamvcs1
 
 func connected() bool { return true }
 

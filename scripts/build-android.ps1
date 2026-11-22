@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 # Builds the Android app with its core into dist\Arman-VPN-<version>-android\:
 # one APK per ABI (arm64-v8a, armeabi-v7a, x86_64). It first binds the Go
 # core into app\android\app\libs\core.aar with gomobile, then builds the

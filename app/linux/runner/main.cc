@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 #include <cstring>
 
 #include "my_application.h"

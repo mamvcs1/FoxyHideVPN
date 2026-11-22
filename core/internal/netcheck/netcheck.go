@@ -9,6 +9,7 @@
 // answer means online. A captive portal's redirect or page is not one. Each
 // call checks anew: the network may have changed since the last one.
 package netcheck
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

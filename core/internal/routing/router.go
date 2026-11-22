@@ -4,6 +4,7 @@
 // networks; the lists are read once into memory, so a decision takes
 // microseconds.
 package routing
+// Maintainer: @mamvcs1
 
 import (
 	"context"

@@ -1,4 +1,5 @@
 package accounts
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

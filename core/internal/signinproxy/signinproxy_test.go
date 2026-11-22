@@ -1,4 +1,5 @@
 package signinproxy
+// Maintainer: @mamvcs1
 
 import (
 	"bufio"

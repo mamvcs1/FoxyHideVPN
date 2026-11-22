@@ -22,6 +22,7 @@
 // Exit status: 0 done, 1 failed (the reason on the standard error), 2 bad
 // arguments, 3 the administrator permission was not given.
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"fmt"

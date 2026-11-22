@@ -3,6 +3,7 @@
 // active at a time, and the next account in priority order takes over when
 // the active one reaches its quota threshold or can no longer be used.
 package accounts
+// Maintainer: @mamvcs1
 
 import (
 	"crypto/rand"

@@ -14,6 +14,7 @@
 // (Allowed): other programs on the device can reach loopback too, and must
 // not use it to go around the VPN.
 package signinproxy
+// Maintainer: @mamvcs1
 
 import (
 	"bufio"

@@ -1,6 +1,7 @@
 //go:build !windows && !linux && !darwin
 
 package tunstack
+// Maintainer: @mamvcs1
 
 import tun "github.com/sagernet/sing-tun"
 

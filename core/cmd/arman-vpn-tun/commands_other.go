@@ -1,6 +1,7 @@
 //go:build !windows && !linux && !darwin
 
 package main
+// Maintainer: @mamvcs1
 
 import "errors"
 

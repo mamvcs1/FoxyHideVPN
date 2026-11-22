@@ -1,4 +1,5 @@
 package version
+// Maintainer: @mamvcs1
 
 import (
 	"strings"

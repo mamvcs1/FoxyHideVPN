@@ -1,4 +1,5 @@
 package securefile
+// Maintainer: @mamvcs1
 
 import (
 	"os"

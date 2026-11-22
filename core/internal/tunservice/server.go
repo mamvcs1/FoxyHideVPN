@@ -6,6 +6,7 @@
 // their traffic is the only one the service sends to the internet itself,
 // directly, outside the TUN.
 package tunservice
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

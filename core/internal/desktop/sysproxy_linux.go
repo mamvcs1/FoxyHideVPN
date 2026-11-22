@@ -1,6 +1,7 @@
 //go:build linux
 
 package desktop
+// Maintainer: @mamvcs1
 
 import (
 	"encoding/json"

@@ -1,4 +1,5 @@
 package config
+// Maintainer: @mamvcs1
 
 import (
 	"os"

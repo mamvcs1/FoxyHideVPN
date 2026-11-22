@@ -1,6 +1,7 @@
 //go:build live
 
 package fxa
+// Maintainer: @mamvcs1
 
 import (
 	"context"

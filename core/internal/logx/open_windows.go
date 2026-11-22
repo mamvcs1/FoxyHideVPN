@@ -1,6 +1,7 @@
 //go:build windows
 
 package logx
+// Maintainer: @mamvcs1
 
 import (
 	"os"

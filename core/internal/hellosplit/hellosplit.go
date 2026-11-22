@@ -9,6 +9,7 @@
 // network.hello_split chooses how (Set); by default the ClientHello goes out
 // whole.
 package hellosplit
+// Maintainer: @mamvcs1
 
 import (
 	"encoding/binary"

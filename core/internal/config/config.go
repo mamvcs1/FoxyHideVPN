@@ -2,6 +2,7 @@
 // a single JSON file in the data directory that the CLI creates with
 // defaults, the user may edit by hand, and the dashboard updates.
 package config
+// Maintainer: @mamvcs1
 
 import (
 	"bytes"

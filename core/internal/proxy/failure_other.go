@@ -1,6 +1,7 @@
 //go:build !windows
 
 package proxy
+// Maintainer: @mamvcs1
 
 import "syscall"
 

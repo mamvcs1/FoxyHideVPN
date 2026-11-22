@@ -1,6 +1,7 @@
 //go:build !windows
 
 package main
+// Maintainer: @mamvcs1
 
 import (
 	"os"

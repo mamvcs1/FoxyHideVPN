@@ -4,6 +4,7 @@
 // way into the core's SOCKS5 proxy, through which every connection goes, so
 // that routing, accounts, and Mozilla's tunnel apply as for any proxy client.
 package tun
+// Maintainer: @mamvcs1
 
 import (
 	"encoding/binary"

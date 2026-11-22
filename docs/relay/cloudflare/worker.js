@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 // API relay for the VPN client, as a Cloudflare Worker.
 //
 // When Mozilla's sign-in, Guardian, or server list cannot be reached from

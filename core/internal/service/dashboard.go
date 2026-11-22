@@ -1,4 +1,5 @@
 package service
+// Maintainer: @mamvcs1
 
 import (
 	"crypto/hmac"

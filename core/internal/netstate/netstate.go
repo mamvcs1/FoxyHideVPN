@@ -3,6 +3,7 @@
 // route (Linux). It sends nothing; a network without internet access, or
 // behind a captive portal, counts as connected.
 package netstate
+// Maintainer: @mamvcs1
 
 import "sync/atomic"
 

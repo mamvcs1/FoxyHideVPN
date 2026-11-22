@@ -42,6 +42,7 @@
 // Windows, update.lock beside update/ elsewhere), so a core that uses the
 // same folder and starts meanwhile leaves these files alone.
 package update
+// Maintainer: @mamvcs1
 
 import (
 	"context"

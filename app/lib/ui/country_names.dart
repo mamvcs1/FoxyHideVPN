@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 // Generated from Windows' region data for the codes in assets/flags.
 
 /// English country names by ISO 3166-1 code, for places the server list

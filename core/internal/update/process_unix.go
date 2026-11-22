@@ -1,6 +1,7 @@
 //go:build linux || darwin
 
 package update
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

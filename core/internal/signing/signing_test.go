@@ -1,4 +1,5 @@
 package signing
+// Maintainer: @mamvcs1
 
 import (
 	"crypto/ed25519"

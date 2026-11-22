@@ -6,6 +6,7 @@
 //
 // Build: gomobile bind -target=android -androidapi 24 -o ../app/android/app/libs/core.aar ./mobile
 package mobile
+// Maintainer: @mamvcs1
 
 import (
 	"errors"

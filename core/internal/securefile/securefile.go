@@ -1,5 +1,6 @@
 // Package securefile writes files that hold secrets or personal data.
 package securefile
+// Maintainer: @mamvcs1
 
 import (
 	"os"

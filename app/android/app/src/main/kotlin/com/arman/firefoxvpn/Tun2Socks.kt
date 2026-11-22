@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 package com.arman.firefoxvpn
 
 import android.os.ParcelFileDescriptor

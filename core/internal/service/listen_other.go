@@ -1,6 +1,7 @@
 //go:build !windows
 
 package service
+// Maintainer: @mamvcs1
 
 import "syscall"
 

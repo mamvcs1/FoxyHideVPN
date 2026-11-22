@@ -1,3 +1,4 @@
+// Maintainer: @mamvcs1
 import 'package:flutter/material.dart';
 
 /// The pill navigation bar: a dark capsule whose chosen item grows into a
