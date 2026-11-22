@@ -191,10 +191,10 @@ func TestSetDashboardLogin(t *testing.T) {
 		t.Fatalf("a five-character password: %d %s", rec.Code, rec.Body.String())
 	}
 	rec = set(d.localToken, `{"username":"me","password":"secret123456"}`)
-	if login := decodeBody[map[string]string](t, rec); rec.Code != http.StatusOK || login["username"] != "me" || login["password"] != "secret12" {
+	if login := decodeBody[map[string]string](t, rec); rec.Code != http.StatusOK || login["username"] != "me" || login["password"] != "secret123456" {
 		t.Fatalf("own login: %d %+v", rec.Code, login)
 	}
-	if rec := c.do(http.MethodPost, "/api/session", map[string]string{"username": "me", "password": "secret12"}); rec.Code != http.StatusOK {
+	if rec := c.do(http.MethodPost, "/api/session", map[string]string{"username": "me", "password": "secret123456"}); rec.Code != http.StatusOK {
 		t.Fatalf("the own login must work: %d", rec.Code)
 	}
 }
