@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 /// The pill navigation bar: a dark capsule whose chosen item grows into a
-/// green pill, its name sliding out from behind the icon. The motion follows
+/// accent pill, its name sliding out from behind the icon. The motion follows
 /// the web demo: the pill grows in 620 ms on a spring, the name fades and
 /// slides in behind it, a tap presses it down a little, and the page above
 /// swaps with a bounce. One widget for the phone's bottom bar (horizontal)
@@ -33,7 +33,7 @@ class PillNavBar extends StatelessWidget {
   /// for a menu that already has its own capsule.
   final bool capsule;
 
-  static const green = Color(0xFF1FBF84);
+  static const accent = Color(0xFFE50924);
   static const idle = Color(0xFF9AA0AE);
   static const bar = Color(0xFF0F0F13);
 
@@ -207,7 +207,7 @@ class _PillItemState extends State<_PillItem> {
           duration: const Duration(milliseconds: 620),
           curve: PillNavBar.spring,
           builder: (context, t, child) {
-            final bg = Color.lerp(Colors.transparent, PillNavBar.green, t)!;
+            final bg = Color.lerp(Colors.transparent, PillNavBar.accent, t)!;
             final fg = Color.lerp(PillNavBar.idle, Colors.white, t)!;
             return Material(
               color: bg,
@@ -219,7 +219,7 @@ class _PillItemState extends State<_PillItem> {
                 onTapUp: (_) => setState(() => _pressed = false),
                 onTapCancel: () => setState(() => _pressed = false),
                 onHover: (v) => setState(() => _hovered = v),
-                splashColor: PillNavBar.green.withValues(alpha: 0.38),
+                splashColor: PillNavBar.accent.withValues(alpha: 0.38),
                 child: Container(
                   width: widget.horizontal ? null : 72,
                   // The bar gets a tall height from its parent, so the
