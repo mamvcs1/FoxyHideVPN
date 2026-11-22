@@ -1,12 +1,12 @@
 # Builds the Windows app with its core into dist\:
-# - Arman-VPN-<version>\: arman-vpn.exe (the Flutter app),
+# - Foxy-Hide-VPN-<version>\: foxy-hide-vpn.exe (the Flutter app),
 #   core\arman-vpn-core.exe (the Go core, which the app starts with -app),
 #   and core\arman-vpn-tun.exe (the TUN service, which the app or Setup
 #   installs; scripts\build-windows-tun.ps1 says how it is signed), to run
 #   here;
-# - Arman-VPN-<version>-Windows-x64.zip: the portable app, an "Arman VPN"
+# - Foxy-Hide-VPN-<version>-Windows-x64.zip: the portable app, an "Foxy Hide VPN"
 #   folder to unpack anywhere (or over an older one);
-# - Arman-VPN-<version>-Windows-Setup-x64.exe: the installer
+# - Foxy-Hide-VPN-<version>-Windows-Setup-x64.exe: the installer
 #   (app\windows\installer\arman-vpn.iss, Inno Setup 6).
 # The app keeps its data (accounts, settings, logs) in user-data beside it.
 # The zip and the installer are made from a clean copy, never with a
@@ -26,7 +26,7 @@ $match = Select-String -Path "$root\app\pubspec.yaml" -Pattern '^version:\s*(\d+
 if (-not $match) { throw 'No version in app\pubspec.yaml' }
 $version = $match.Matches[0].Groups[1].Value
 if ($AppVersion) { $version = $AppVersion }
-$out = "$root\dist\Arman-VPN-$version"
+$out = "$root\dist\Foxy-Hide-VPN-$version"
 if (Test-Path $out) { throw "$out already exists; bump the version in app\pubspec.yaml" }
 
 # Inno Setup's compiler: ISCC on the PATH, else its usual places.
@@ -99,13 +99,13 @@ try {
     # 1.0.9, which the update of those versions checks for and starts: a
     # copy of the app, which starts the one under the new name, and an
     # empty file (core\internal\update\legacy.go). The installer does not.
-    Copy-Item "$app\arman-vpn.exe" "$app\firefox-vpn.exe"
+    Copy-Item "$app\foxy-hide-vpn.exe" "$app\firefox-vpn.exe"
     New-Item -ItemType File "$app\core\firefox-vpn-core.exe" | Out-Null
-    $zip = "$root\dist\Arman-VPN-$version-Windows-x64.zip"
+    $zip = "$root\dist\Foxy-Hide-VPN-$version-Windows-x64.zip"
     Compress-Archive -Path $app -DestinationPath $zip -CompressionLevel Optimal -Force
     Remove-Item "$app\firefox-vpn.exe", "$app\core\firefox-vpn-core.exe"
 
-    $setupName = "Arman-VPN-$version-Windows-Setup-x64"
+    $setupName = "Foxy-Hide-VPN-$version-Windows-Setup-x64"
     & $iscc /Q "/DAppVersion=$version" "/DSourceDir=$app" "/DOutputDir=$root\dist" "/DOutputName=$setupName" "$root\app\windows\installer\arman-vpn.iss"
     if ($LASTEXITCODE -ne 0) { throw 'the installer did not build' }
 } finally { Remove-Item -Recurse -Force $stage -ErrorAction SilentlyContinue }
