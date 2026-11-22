@@ -209,8 +209,8 @@ jobs:
         run: |
           $v = '${{ needs.test.outputs.version }}'
           New-Item -ItemType Directory out | Out-Null
-          Move-Item "dist/Arman-VPN-$v-Windows-x64.zip" out/Arman-VPN-Windows-x64.zip
-          Move-Item "dist/Arman-VPN-$v-Windows-Setup-x64.exe" out/Arman-VPN-Windows-Setup-x64.exe
+          Move-Item "dist/Foxy-Hide-VPN-$v-Windows-x64.zip" out/Foxy-Hide-VPN-Windows-x64.zip
+          Move-Item "dist/Foxy-Hide-VPN-$v-Windows-Setup-x64.exe" out/Foxy-Hide-VPN-Windows-Setup-x64.exe
       - uses: actions/upload-artifact@v7
         with:
           name: windows
@@ -293,10 +293,10 @@ jobs:
           }
           build_apk --split-per-abi
           for abi in arm64-v8a armeabi-v7a x86_64; do
-            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "../out/Arman-VPN-Android-$abi.apk"
+            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "../out/Foxy-Hide-VPN-Android-$abi.apk"
           done
           build_apk
-          cp build/app/outputs/flutter-apk/app-release.apk ../out/Arman-VPN-Android-universal.apk
+          cp build/app/outputs/flutter-apk/app-release.apk ../out/Foxy-Hide-VPN-Android-universal.apk
       - name: Remove the key
         if: always()
         run: rm -f app/android/release.jks app/android/key.properties
@@ -322,7 +322,7 @@ jobs:
       - uses: actions/upload-artifact@v7
         with:
           name: linux
-          path: dist/arman-vpn-core-linux-*.tar.gz
+          path: dist/foxy-hide-vpn-core-linux-*.tar.gz
           if-no-files-found: error
 
   linux-desktop:
@@ -397,7 +397,7 @@ jobs:
       - name: Release name
         run: |
           mkdir out
-          mv "dist/Arman-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Arman-VPN-Linux-${{ matrix.arch }}.tar.gz"
+          mv "dist/Foxy-Hide-VPN-${{ needs.test.outputs.version }}-Linux-${{ matrix.arch }}.tar.gz" "out/Foxy-Hide-VPN-Linux-${{ matrix.arch }}.tar.gz"
       - uses: actions/upload-artifact@v7
         with:
           name: linux-desktop-${{ matrix.arch }}
@@ -435,8 +435,8 @@ jobs:
         run: |
           v='${{ needs.test.outputs.version }}'
           mkdir -p out
-          mv "dist/Arman-VPN-$v-macOS.dmg" out/Foxy-Hide-VPN-macOS.dmg
-          mv "dist/Arman-VPN-$v-macOS.tar.gz" out/Foxy-Hide-VPN-macOS.tar.gz
+          mv "dist/Foxy-Hide-VPN-$v-macOS.dmg" out/Foxy-Hide-VPN-macOS.dmg
+          mv "dist/Foxy-Hide-VPN-$v-macOS.tar.gz" out/Foxy-Hide-VPN-macOS.tar.gz
       - uses: actions/upload-artifact@v7
         with:
           name: macos
@@ -472,21 +472,21 @@ jobs:
         working-directory: release
         run: |
           v="${{ needs.test.outputs.version }}"
-          for f in Arman-VPN-*; do
-            [ -e "$f" ] && mv "$f" "Foxy-Hide-VPN-${f#Arman-VPN-}"
+          for f in Foxy-Hide-VPN-*; do
+            [ -e "$f" ] && mv "$f" "Foxy-Hide-VPN-${f#Foxy-Hide-VPN-}"
           done
           for f in Foxy-Hide-VPN-*; do
             cp "$f" "Foxy-Hide-VPN-$v-${f#Foxy-Hide-VPN-}"
           done
-          for f in arman-vpn-core-*; do
-            [ -e "$f" ] && cp "$f" "arman-vpn-core-$v-${f#arman-vpn-core-}"
+          for f in foxy-hide-vpn-core-*; do
+            [ -e "$f" ] && cp "$f" "foxy-hide-vpn-core-$v-${f#foxy-hide-vpn-core-}"
           done
           ls
       - name: Checksums
         working-directory: release
         run: |
           sha256sum * > SHA256SUMS.txt
-          printf '# Arman VPN version: %s\n' "${{ needs.test.outputs.version }}" >> SHA256SUMS.txt
+          printf '# Foxy Hide VPN version: %s\n' "${{ needs.test.outputs.version }}" >> SHA256SUMS.txt
           cat SHA256SUMS.txt
       # The desktop apps install a new version only when the update key
       # signed this list (core/internal/update); without the key (the
