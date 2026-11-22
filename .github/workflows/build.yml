@@ -277,11 +277,23 @@ jobs:
           python tool/app_icons.py
           flutter pub get
           mkdir -p ../out
-          flutter build apk --release --split-per-abi --dart-define=APP_VERSION=$v
+          build_apk() {
+            local attempt=1
+            until flutter build apk "$@" --release --dart-define=APP_VERSION=$v; do
+              if [ "$attempt" -ge 4 ]; then
+                echo "::error::Flutter APK build failed after $attempt attempts"
+                return 1
+              fi
+              echo "::warning::Gradle download/build failed; retrying in $((attempt * 20)) seconds (attempt $((attempt + 1))/4)"
+              sleep $((attempt * 20))
+              attempt=$((attempt + 1))
+            done
+          }
+          build_apk --split-per-abi
           for abi in arm64-v8a armeabi-v7a x86_64; do
             cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "../out/Arman-VPN-Android-$abi.apk"
           done
-          flutter build apk --release --dart-define=APP_VERSION=$v
+          build_apk
           cp build/app/outputs/flutter-apk/app-release.apk ../out/Arman-VPN-Android-universal.apk
       - name: Remove the key
         if: always()
