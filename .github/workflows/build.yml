@@ -476,7 +476,11 @@ jobs:
         run: |
           v="${{ needs.test.outputs.version }}"
           for f in Foxy-Hide-VPN-*; do
-            [ -e "$f" ] && mv "$f" "Foxy-Hide-VPN-${f#Foxy-Hide-VPN-}"
+            [ -e "$f" ] || continue
+            normalized="Foxy-Hide-VPN-${f#Foxy-Hide-VPN-}"
+            if [ "$f" != "$normalized" ]; then
+              mv "$f" "$normalized"
+            fi
           done
           for f in Foxy-Hide-VPN-*; do
             cp "$f" "Foxy-Hide-VPN-$v-${f#Foxy-Hide-VPN-}"
